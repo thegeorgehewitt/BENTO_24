@@ -131,9 +131,9 @@ public class Draggable : MonoBehaviour
                 GetComponent<SpriteRenderer>().color = new Color(0.682353f, 0.5067859f, 0.4196078f, 1);
                 break;
             case 3:
-                break;
+                return;
             default:
-                break;
+                return;
         }
         // change text to display subtype
         transform.GetChild(0).GetComponent<TextMesh>().text = itemSubtype.ToString();
