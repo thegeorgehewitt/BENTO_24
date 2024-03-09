@@ -62,14 +62,12 @@ public class Draggable : MonoBehaviour
 
     public void CheckLocationUp()
     {
-        Debug.Log("CheckLocationUp");
         // cast for objects at item's location
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
 
         // loop through every raycast hit
         foreach (RaycastHit2D hit in hits)
         {
-            Debug.Log("hit object: " + hit.transform.name);
             if (hit.transform == transform.parent)
             {
                 // attempt to save hit object's Slot script

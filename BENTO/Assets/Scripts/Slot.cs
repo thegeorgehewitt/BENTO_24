@@ -21,7 +21,6 @@ public class Slot : MonoBehaviour
 
     public void SetItem(int itemType)
     {
-        Debug.Log("item type set: " + itemType);
         // update variable with current held item/empty status
         itemHeld = itemType;
     }
