@@ -21,7 +21,7 @@ public class Droppable : MonoBehaviour
             if (slot != null)
             {
                 // check if free
-                if(slot.GetIsHolding())
+                if(slot.IsFree())
                 {
                     // set to false, indicating it is in use
                     slot.SetItem(itemSubtype);
@@ -70,6 +70,7 @@ public class Droppable : MonoBehaviour
         // repeat for each child of the object (slots)
         for (int i = 0; i < transform.childCount; i++)
         {
+
             // save reference to transforms of children
             slots[i] = transform.GetChild(i);
         }

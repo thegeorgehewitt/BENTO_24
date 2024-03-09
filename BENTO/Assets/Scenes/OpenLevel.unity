@@ -774,7 +774,6 @@ GameObject:
   - component: {fileID: 352368969}
   - component: {fileID: 352368968}
   - component: {fileID: 352368967}
-  - component: {fileID: 352368966}
   m_Layer: 0
   m_Name: Droppable (1)
   m_TagString: Untagged
@@ -782,20 +781,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &352368966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 352368965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a7ad26043a3e74d8281edae17133f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodPrefab: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
-  preppedArea: {fileID: 0}
 --- !u!114 &352368967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -876,7 +861,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: -4
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.94509804, g: 0.9137255, b: 0.7607843, a: 1}
   m_FlipX: 0
@@ -1169,7 +1154,6 @@ GameObject:
   - component: {fileID: 551659485}
   - component: {fileID: 551659484}
   - component: {fileID: 551659483}
-  - component: {fileID: 551659482}
   - component: {fileID: 551659487}
   m_Layer: 0
   m_Name: Droppable
@@ -1178,20 +1162,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &551659482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551659481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a7ad26043a3e74d8281edae17133f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  foodPrefab: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
-  preppedArea: {fileID: 0}
 --- !u!114 &551659483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1317,7 +1287,7 @@ MonoBehaviour:
   startPosition: {x: 0, y: 0, z: 0}
   moveTime: 0.4
   itemType: 3
-  itemSubtype: 0
+  itemSubtype: 1
 --- !u!1 &564632508
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1375,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.8820258, g: 0.84788185, b: 0.9622642, a: 1}
   m_FlipX: 0

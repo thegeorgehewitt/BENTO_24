@@ -53,10 +53,21 @@ public class TouchInput : MonoBehaviour
                         // if a script was found
                         if (draggable != null)
                         {
-                            // update last dragged to this value
-                            lastDragged = draggable;
-                            // intiate the drag
-                            StartDrag();
+                            if (draggable.GetItemType() < 3)
+                            {   
+                                // update last dragged to this value
+                                lastDragged = draggable;
+                                // intiate the drag
+                                StartDrag();
+                                return;
+                            }
+                            else
+                            {
+                                // update last dragged to this value
+                                lastDragged = draggable;
+                                // intiate the drag
+                                StartDrag();
+                            }
                         }
                     }
                 }

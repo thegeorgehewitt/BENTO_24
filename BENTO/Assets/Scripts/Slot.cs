@@ -7,7 +7,7 @@ public class Slot : MonoBehaviour
     // describe what is held, 0 = empty
     [SerializeField] private int itemHeld = 0;
 
-    public bool GetIsHolding()
+    public bool IsFree()
     {
         // return true if no item held
         return (itemHeld == 0);
@@ -21,6 +21,7 @@ public class Slot : MonoBehaviour
 
     public void SetItem(int itemType)
     {
+        Debug.Log("item type set: " + itemType);
         // update variable with current held item/empty status
         itemHeld = itemType;
     }

@@ -44,7 +44,8 @@ public class Draggable : MonoBehaviour
                     // if free slot available
                     if (nextFreeSlot != null)
                     {
-                        transform.SetParent(nextFreeSlot.transform, true);
+                        transform.SetParent(nextFreeSlot, true);
+
                         // move objects to the slot's position
                         StartMoveTo(nextFreeSlot.position);
 
@@ -61,21 +62,26 @@ public class Draggable : MonoBehaviour
 
     public void CheckLocationUp()
     {
+        Debug.Log("CheckLocationUp");
         // cast for objects at item's location
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
 
         // loop through every raycast hit
         foreach (RaycastHit2D hit in hits)
         {
-            // attempt to save hit object's Slot script
-            Slot slot = hit.transform.GetComponent<Slot>();
-
-            // if script found
-            if (slot != null)
+            Debug.Log("hit object: " + hit.transform.name);
+            if (hit.transform == transform.parent)
             {
-                transform.parent = null;
-                // set marker to show slot is empty
-                slot.SetItem(0);
+                // attempt to save hit object's Slot script
+                Slot slot = hit.transform.GetComponent<Slot>();
+
+                // if script found
+                if (slot)
+                {
+                    transform.parent = null;
+                    // set marker to show slot is empty
+                    slot.SetItem(0);
+                }
             }
         }
     }
@@ -137,5 +143,10 @@ public class Draggable : MonoBehaviour
         }
         // change text to display subtype
         transform.GetChild(0).GetComponent<TextMesh>().text = itemSubtype.ToString();
+    }
+
+    public int GetItemType()
+    {
+        return itemType;
     }
 }
