@@ -17,7 +17,7 @@ public class Draggable : MonoBehaviour
     // indicate what type of ingredient/prepped food this is, rice/steamed rice (1), 
     [SerializeField] private int itemSubtype;
 
-    private void Start()
+    protected virtual void Start()
     {
         // save position at start
         startPosition = transform.position;
@@ -123,7 +123,7 @@ public class Draggable : MonoBehaviour
     }
 
     // update visuals to match the item type and subtype
-    public void UpdateVisual()
+    public virtual void UpdateVisual()
     {
         // based on item type, change colour
         switch (itemType)

@@ -25,7 +25,7 @@ public class CookingSystem : MonoBehaviour
 
     private void Start()
     {
-        // ref to droppable script on tis object
+        // ref to droppable script on this object
         droppable = GetComponent<Droppable>();
 
         // holding recipes
@@ -52,25 +52,29 @@ public class CookingSystem : MonoBehaviour
         currentRecipes = new List<int>() { 1, 3, 4, 5, 6 };
     }
 
-    // to be used to add to available recipes
-    public void AddToRecipies()
+    // used to add to available recipes
+    public void AddToRecipies(int newRecipe)
     {
+        if (!currentRecipes.Contains(newRecipe))
+        {
+            currentRecipes.Add(newRecipe);
+        }
         return;
     }
 
     public void CheckRecipies()
     {
         // if valid reference to this objects droppable script held
-        if (droppable != null)
+        if (droppable)
         {
+            // fill out array variable with array of contents in slots
+            int[] contents = droppable.GetContents();
+            // sort into numerical order (allow comparison)
+            Array.Sort(contents);
+
             // loop for number of recipes in list
             for (int i = 1; i < recipes.Length; i++)
             {
-                // fill out array variable with array of contents in slots
-                int[] contents = droppable.GetContents();
-                // sort into numerical order (allow comparison)
-                Array.Sort(contents);
-
                 // if there is a match between the recipe and the contents
                 if (contents.SequenceEqual(recipes[i]))
                 {
