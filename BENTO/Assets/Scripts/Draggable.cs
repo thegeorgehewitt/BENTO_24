@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
-    // saves intial position
-    public Vector3 startPosition;
     // determines speed of movement for slotting
     [SerializeField] private float moveTime = 0.4f;
 
@@ -17,14 +15,14 @@ public class Draggable : MonoBehaviour
     // indicate what type of ingredient/prepped food this is, rice/steamed rice (1), 
     [SerializeField] private int itemSubtype;
 
+    [SerializeField] protected Transform spawnPoint;
+
     protected virtual void Start()
     {
-        // save position at start
-        startPosition = transform.position;
         UpdateVisual();
     }
 
-    public void CheckLocation()
+    public virtual void CheckLocation()
     {
         // cast for objects at item's location
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
@@ -47,7 +45,8 @@ public class Draggable : MonoBehaviour
                         transform.SetParent(nextFreeSlot, true);
 
                         // move objects to the slot's position
-                        StartMoveTo(nextFreeSlot.position);
+                        StartMoveTo(nextFreeSlot);
+
 
                         // terminate function
                         return;
@@ -56,8 +55,10 @@ public class Draggable : MonoBehaviour
             }
         }
 
+
         // move object back to it's start position
-        StartMoveTo(startPosition);
+        StartMoveTo(null);
+
     }
 
     public void CheckLocationUp()
@@ -84,8 +85,13 @@ public class Draggable : MonoBehaviour
         }
     }
 
-    IEnumerator MoveTo(Vector3 endPosition)
+    IEnumerator MoveTo(Transform endPosition)
     {
+        if (endPosition == null)
+        {
+            endPosition = spawnPoint;
+        }
+
         // used to monitor progress through lerp
         float progress = 0.0f;
         // used at starting position for lerp
@@ -98,13 +104,15 @@ public class Draggable : MonoBehaviour
             progress += Time.deltaTime / moveTime;
 
             // update object position
-            transform.position = Vector3.Lerp(atStart, endPosition, Mathf.SmoothStep(0.0f, 1.0f, progress));
+            transform.position = Vector3.Lerp(atStart, endPosition.position, Mathf.SmoothStep(0.0f, 1.0f, progress));
 
             yield return null;
         }
 
         // set position to end position (remove overshoot from lerp)
-        transform.position = endPosition;
+        transform.position = endPosition.position;
+
+        AfterMoveTo();
 
         yield return null;
     }
@@ -117,7 +125,7 @@ public class Draggable : MonoBehaviour
     }
 
     // accessible function to intiate movement coroutine
-    public void StartMoveTo(Vector3 endPosition)
+    public void StartMoveTo(Transform endPosition)
     {
         StartCoroutine(MoveTo(endPosition));
     }
@@ -146,5 +154,10 @@ public class Draggable : MonoBehaviour
     public int GetItemType()
     {
         return itemType;
+    }
+
+    protected virtual void AfterMoveTo()
+    {
+
     }
 }

@@ -101,7 +101,7 @@ public class CookingSystem : MonoBehaviour
                                     // call function to update appearance of new object
                                     spawnedItemScript.UpdateVisual();
                                     // move new object to the aviable slot
-                                    spawnedItemScript.StartMoveTo(freeSlot.position);
+                                    spawnedItemScript.StartMoveTo(freeSlot);
 
                                 }
 
@@ -122,7 +122,7 @@ public class CookingSystem : MonoBehaviour
                                             // call function to reset slot the item is being removed from
                                             script.CheckLocationUp();
                                             // move object back to their starting position
-                                            script.StartMoveTo(script.startPosition);
+                                            script.StartMoveTo(null);
                                         }
                                     }
                                 }
