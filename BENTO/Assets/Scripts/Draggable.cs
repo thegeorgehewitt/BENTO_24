@@ -161,4 +161,9 @@ public class Draggable : MonoBehaviour
     {
         transform.position = spawnPoint.position;
     }
+
+    public void SetSpawnPoint(Transform spawn)
+    {
+        spawnPoint = spawn;
+    }
 }

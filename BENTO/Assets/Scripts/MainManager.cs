@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System.Linq;
 
 public class MainManager : MonoBehaviour
 {
@@ -27,8 +27,17 @@ public class MainManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    public void AddToFoods(int newFood)
+    {
+        availableFoods.Add(newFood);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         int draggableType;
         int[] toSpawn;
@@ -54,25 +63,20 @@ public class MainManager : MonoBehaviour
         }
 
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        spawnPoints = spawnPoints.OrderBy(go => go.transform.position.x).ToArray();
+        spawnPoints = spawnPoints.OrderBy(go => -go.transform.position.y).ToArray();
+
+        Debug.Log(spawnPoints.Length);
 
         for (int i = 0; i < spawnPoints.Length; i++)
         {
             if (i < toSpawn.Length)
             {
-                GameObject newObject = Instantiate(draggablePrefab, spawnPoints[i].transform);
+                GameObject newObject = Instantiate(draggablePrefab, spawnPoints[i].transform.position, Quaternion.identity);
                 newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i]);
+                newObject.GetComponent<Draggable>().SetSpawnPoint(spawnPoints[i].transform);
+
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void AddToFoods(int newFood)
-    {
-        availableIngredients.Add(newFood);
     }
 }

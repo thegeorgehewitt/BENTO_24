@@ -103,6 +103,7 @@ public class CookingSystem : MonoBehaviour
                                 GameObject spawnedItem = Instantiate(foodPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                                 // attepmt to save ref to new object's draggable script
                                 Draggable spawnedItemScript = spawnedItem.GetComponent<Draggable>();
+
                                 // if successfull
                                 if(spawnedItemScript != null)
                                 {
@@ -112,7 +113,10 @@ public class CookingSystem : MonoBehaviour
                                     spawnedItemScript.UpdateVisual();
                                     // move new object to the aviable slot
                                     spawnedItemScript.StartMoveTo(freeSlot);
-
+                                    // set spawn point to slot
+                                    spawnedItemScript.SetSpawnPoint(freeSlot);
+                                    // make child of slot
+                                    spawnedItem.transform.parent = freeSlot.transform;
                                 }
 
                                 // get stored food draggable scripts
