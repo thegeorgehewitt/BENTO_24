@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.Build.Content;
 
 public class CookingSystem : MonoBehaviour
 {
@@ -22,9 +23,13 @@ public class CookingSystem : MonoBehaviour
     [SerializeField] private GameObject foodPrefab;
     // reference to the object which will be used to store prepped foods
     [SerializeField] private GameObject preppedArea;
+    //reference to game manager
+    [SerializeField] private MainManager mainManager;
 
     private void Start()
     {
+        mainManager = GameObject.FindObjectOfType<MainManager>();
+
         // ref to droppable script on this object
         droppable = GetComponent<Droppable>();
 
@@ -89,6 +94,11 @@ public class CookingSystem : MonoBehaviour
                             // if slot found
                             if (freeSlot != null)
                             {
+                                if(mainManager)
+                                {
+                                    mainManager.AddToFoods(i);
+                                }
+
                                 // spawn new ingredient and save reference
                                 GameObject spawnedItem = Instantiate(foodPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                                 // attepmt to save ref to new object's draggable script

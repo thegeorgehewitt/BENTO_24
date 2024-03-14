@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6825118}
   m_Layer: 0
   m_Name: FoodSpawn2
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 80513582}
   m_Layer: 0
   m_Name: FoodSpawn3
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 792291463}
   m_Layer: 0
   m_Name: FoodSpawn1
-  m_TagString: Untagged
+  m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2528,6 +2528,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreppedFood (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1672514041771622001, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
       propertyPath: itemType
       value: 2
@@ -3054,6 +3058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreppedFood
       objectReference: {fileID: 0}
+    - target: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1672514041771622001, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
       propertyPath: itemType
       value: 2
@@ -3117,6 +3125,51 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
+--- !u!1 &1869565904
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869565906}
+  - component: {fileID: 1869565907}
+  m_Layer: 0
+  m_Name: MainManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869565906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869565904}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8493707, y: -1.3976843, z: -0.023010701}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1869565907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869565904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f305de44c566cf4bba935d0e3b58655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  draggablePrefab: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
 --- !u!1 &1946951869
 GameObject:
   m_ObjectHideFlags: 0
@@ -3249,6 +3302,10 @@ PrefabInstance:
     - target: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
       propertyPath: m_Name
       value: PreppedFood (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1672514041771622001, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
       propertyPath: itemType

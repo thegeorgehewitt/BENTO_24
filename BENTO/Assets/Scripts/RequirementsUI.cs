@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RequirementsUI : MonoBehaviour
 {
@@ -21,11 +22,11 @@ public class RequirementsUI : MonoBehaviour
 
         for (int i = 0; i < slots?.Length; i++)
         {
-            slots[i].transform.parent.gameObject.SetActive(false);
+            slots[i].transform.parent.gameObject.GetComponent<Image>().enabled = false;
             if (i < newValues.Count)
             {
                 slots[i].SetText(newValues[i].ToString());
-                slots[i].transform.parent.gameObject.SetActive(true);
+                slots[i].transform.parent.gameObject.GetComponent<Image>().enabled = true;
             }
             else
             {
