@@ -47,7 +47,6 @@ public class Draggable : MonoBehaviour
                         // move objects to the slot's position
                         StartMoveTo(nextFreeSlot);
 
-
                         // terminate function
                         return;
                     }
@@ -63,24 +62,19 @@ public class Draggable : MonoBehaviour
 
     public void CheckLocationUp()
     {
-        // cast for objects at item's location
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
-
-        // loop through every raycast hit
-        foreach (RaycastHit2D hit in hits)
+        // if has parent (is slotted)
+        if (transform.parent)
         {
-            if (hit.transform == transform.parent)
-            {
-                // attempt to save hit object's Slot script
-                Slot slot = hit.transform.GetComponent<Slot>();
+            //get slot script on parent
+            Slot slot = transform.parent.GetComponent<Slot>();
 
-                // if script found
-                if (slot)
-                {
-                    transform.parent = null;
-                    // set marker to show slot is empty
-                    slot.SetItem(0);
-                }
+            if (slot)
+            {
+                // set marker to show slot is empty
+                slot.SetItem(0);
+
+                // remove parentage
+                transform.parent = null;
             }
         }
     }
@@ -151,6 +145,7 @@ public class Draggable : MonoBehaviour
         transform.GetChild(0).GetComponent<TextMesh>().text = itemSubtype.ToString();
     }
 
+    // function to retrieve item type
     public int GetItemType()
     {
         return itemType;
@@ -159,5 +154,11 @@ public class Draggable : MonoBehaviour
     protected virtual void AfterMoveTo()
     {
 
+    }
+
+    // funciton to snap back to start position
+    public void ResetPosition()
+    {
+        transform.position = spawnPoint.position;
     }
 }

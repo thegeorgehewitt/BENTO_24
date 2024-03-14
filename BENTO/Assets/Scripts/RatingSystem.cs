@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class RatingSystem : MonoBehaviour
 {
@@ -16,6 +19,10 @@ public class RatingSystem : MonoBehaviour
     };
 
     [SerializeField] private List<int> requirements = new List<int>();
+
+    //[SerializeField] private GameObject ReqUI;
+
+    public UnityEvent<List<int>> updateUI = new UnityEvent<List<int>>();
 
     private int rating = 0;
 
@@ -69,13 +76,21 @@ public class RatingSystem : MonoBehaviour
     private void GenerateRequirements()
     {
         requirements.Clear();
-        for (int i = 0; i < Random.Range(1, 3); i++)
+
+        int quantity = Random.Range(1, 4);
+        for (int i = 0; i < quantity; i++)
         {
-            int newValue = Random.Range(1, 6);
-            if (!requirements.Contains(newValue))
+            int newValue = 0;
+            while (!requirements.Contains(newValue))
             {
-                requirements.Add(newValue);
+                newValue = Random.Range(1, 7);
+                if (!requirements.Contains(newValue))
+                {
+                    requirements.Add(newValue);
+                }
             }
         }
+
+        updateUI.Invoke(requirements);
     }
 }

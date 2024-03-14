@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -34,34 +35,41 @@ public class DraggableBENTO : Draggable
         }
     }
 
+    // additional code to be run after a move to have been completed
     protected override void AfterMoveTo()
     {
-        GetComponent<Renderer>().enabled = false;
-        CheckLocationUp();
-        transform.position = spawnPoint.position;
-        GetComponent<Renderer>().enabled = true;
-
-        // save reference to slots on object
-        Transform[] slots = transform.GetComponent<Droppable>().GetSlots();
-
-        foreach (Transform slot in slots)
+        // if has parent - been placed on customer
+        if ( transform.parent != null )
         {
-            // look for objects in the slot
-            RaycastHit2D[] hits = Physics2D.RaycastAll(slot.transform.position, Vector2.zero);
-            foreach (RaycastHit2D hit in hits)
+            // turn off renderer
+            GetComponent<Renderer>().enabled = false;
+
+            // get draggable scripts on the food items held
+            Draggable[] draggables = GetComponentsInChildren<Draggable>();
+            foreach (Draggable draggable in draggables)
             {
-                // attempt to get ref to draggable script on found object
-                Draggable script = hit.transform.GetComponent<Draggable>();
-                // if found
-                if (script != null)
-                {
-                    // call function to reset slot the item is being removed from
-                    script.CheckLocationUp();
-                    // move object back to their starting position
-                    script.StartMoveTo(null);
-                }
+                //turn off renderer
+                draggable.transform.GetComponent<Renderer>().enabled = false;
+                //reset BENTO slot
+                draggable.CheckLocationUp();
+                // snap food to spawn position
+                draggable.ResetPosition();
+                // turn on renderer
+                draggable.transform.GetComponent<Renderer>().enabled = true;
             }
+
+            // save reference to slots on object
+            Transform[] slots = transform.GetComponent<Droppable>().GetSlots();
+
+            // reset customer slot
+            CheckLocationUp();
+            // snap BENTO back to spawn locatiom
+            transform.position = spawnPoint.position;
+
+            // turn on renderer
+            GetComponent<Renderer>().enabled = true;
         }
+        
     }
 
 }

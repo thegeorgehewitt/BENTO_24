@@ -105,26 +105,13 @@ public class CookingSystem : MonoBehaviour
 
                                 }
 
-                                // save reference to slots on object
-                                Transform[] slots = droppable.GetSlots();
-
-                                foreach (Transform slot in slots)
+                                // get stored food draggable scripts
+                                Draggable[] draggables = GetComponentsInChildren<Draggable>();
+                                foreach (Draggable draggable in draggables)
                                 {
-                                    // look for objects in the slot
-                                    RaycastHit2D[] hits = Physics2D.RaycastAll(slot.transform.position, Vector2.zero);
-                                    foreach (RaycastHit2D hit in hits)
-                                    {
-                                        // attempt to get ref to draggable script on found object
-                                        Draggable script = hit.transform.GetComponent<Draggable>();
-                                        // if found
-                                        if (script != null)
-                                        {
-                                            // call function to reset slot the item is being removed from
-                                            script.CheckLocationUp();
-                                            // move object back to their starting position
-                                            script.StartMoveTo(null);
-                                        }
-                                    }
+                                    // reset owning slots and snap back to start
+                                    draggable.CheckLocationUp();
+                                    draggable.StartMoveTo(null);
                                 }
                             }
                         }

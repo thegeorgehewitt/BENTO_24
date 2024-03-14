@@ -28,7 +28,6 @@ public class Droppable : MonoBehaviour
 
                     // return the transform of the slot
                     return transform.GetChild(i);
-
                 }
             }
         }
@@ -70,7 +69,6 @@ public class Droppable : MonoBehaviour
         // repeat for each child of the object (slots)
         for (int i = 0; i < transform.childCount; i++)
         {
-
             // save reference to transforms of children
             slots[i] = transform.GetChild(i);
         }

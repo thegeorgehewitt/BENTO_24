@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// okayyyyy
-
 public class TouchInput : MonoBehaviour
 {
     // used to store the world position that alines with the players current touching position
