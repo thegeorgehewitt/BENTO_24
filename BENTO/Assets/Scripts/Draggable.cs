@@ -151,6 +151,7 @@ public class Draggable : MonoBehaviour
         return itemType;
     }
 
+    // for adding additional functionality in inheriting classes
     protected virtual void AfterMoveTo()
     {
 

@@ -8,12 +8,22 @@ public class RequirementsUI : MonoBehaviour
 {
 
     TextMeshProUGUI[] slots;
-    RatingSystem ratingSystem;
+
+    //RatingSystem ratingSystem;
+
+    // reference to main manager script
+    private MainManager mainManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        ratingSystem = GameObject.FindGameObjectWithTag("RatingSystem").GetComponent<RatingSystem>();
+        //ratingSystem = GameObject.FindGameObjectWithTag("RatingSystem").GetComponent<RatingSystem>();
+
+        //mainManager = FindObjectOfType<MainManager>();
+        //if (mainManager)
+        //{
+        //    mainManager.OnBoxProcessed += UpdatePaymentUI;
+        //}
     }
 
     public void UpdateRequirements(List<int> newValues)
@@ -35,5 +45,9 @@ public class RequirementsUI : MonoBehaviour
         }
     }
 
+    //private void UpdatePaymentUI()
+    //{
+    //    TextMeshProUGUI paymentText = GetComponent<TextMeshProUGUI>();
+    //}
 
 }

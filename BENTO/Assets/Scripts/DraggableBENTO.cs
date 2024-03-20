@@ -38,7 +38,7 @@ public class DraggableBENTO : Draggable
     // additional code to be run after a move to have been completed
     protected override void AfterMoveTo()
     {
-        // if has parent - been placed on customer
+        // if has parent - is placed on customer
         if ( transform.parent != null )
         {
             // turn off renderer

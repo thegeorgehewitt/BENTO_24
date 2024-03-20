@@ -21,13 +21,13 @@ public class RatingSystem : MonoBehaviour
     // 2D array with food cost and price
     private float[][] foodCostPrice =
     {       
-        new float[] { 0.1f, 1 },
-        new float[] { 0.1f, 1 },
-        new float[] { 0.1f, 1 },
-        new float[] { 0.1f, 1 },
-        new float[] { 0.1f, 1 },
-        new float[] { 0.1f, 1 },
-        new float[] { 0.1f, 1 }
+        new float[] { 0.5f, 1 },
+        new float[] { 0.5f, 1 },
+        new float[] { 0.5f, 1 },
+        new float[] { 0.5f, 1 },
+        new float[] { 0.5f, 1 },
+        new float[] { 0.5f, 1 },
+        new float[] { 0.8f, 2 }
     };
 
     [SerializeField] private List<int> requirements = new List<int>();
@@ -37,6 +37,9 @@ public class RatingSystem : MonoBehaviour
     [SerializeField] private UnityEvent<List<int>> updateUI = new UnityEvent<List<int>>();
 
     private int rating = 0;
+    private float boxPrice = 0;
+    private float boxCost = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +64,13 @@ public class RatingSystem : MonoBehaviour
             // get refs to the foods types stored
             int[] foodHeld = BENTODroppable.GetContents();
 
+            // if BENTO empty
+            if(foodHeld.Sum() == 0)
+            {
+                return 0;
+            }
+
+
             //for each requirement from custoemr, counts the number of occurances in the foods
             for (int req = 0; req < requirements.Count; req++)
             {            
@@ -70,16 +80,28 @@ public class RatingSystem : MonoBehaviour
                     // get food type for current slot
                     int foodItem = foodHeld[slot];
 
+
+                    if (req == 0)
+                    {
+                        if (foodItem != 0)
+                        {
+                            boxPrice += foodCostPrice[foodItem][1];
+                            boxCost += foodCostPrice[foodItem][0];
+                        }
+                    }
+                                       
+
                     // if food contains current requirement check
                     if (recipeInfo[foodItem].Contains(requirements[req]))
                     {
                         // increase rating
                         rating++;
-
-                        mainManager.ChangeFunds(foodCostPrice[foodItem][2], rating);
                     }
                 }
             }
+            mainManager.ProcessBox(boxPrice, rating, boxCost);
+            boxPrice = 0;
+            boxCost = 0;
         }
 
         // reset requirements

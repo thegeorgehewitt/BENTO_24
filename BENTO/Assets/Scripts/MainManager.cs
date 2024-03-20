@@ -10,7 +10,16 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
 
     [SerializeField] private float funds = 1500;
-    public event Action OnFundsChange;
+
+    private float lastPayment;
+    private float lastTip;
+    private float[] paymentInfo;
+
+    private float roundCost = 0;
+    private float roundTips = 0;
+    private float roundIncome = 0;
+
+    public event Action OnBoxProcessed;
 
     [SerializeField] private GameObject draggablePrefab;
 
@@ -43,6 +52,10 @@ public class MainManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        roundCost = 0;
+        roundTips = 0;
+        roundIncome = 0;
+
         int draggableType;
         int[] toSpawn;
 
@@ -88,10 +101,33 @@ public class MainManager : MonoBehaviour
         return funds;
     }
 
-    public void ChangeFunds(float amount, float tip)
+    public float[] GetPayment()
     {
+        paymentInfo = new float[] { lastPayment , lastTip };
+        return paymentInfo;
+    }
+
+    public void ProcessBox(float amount, float tip, float cost)
+    {
+        lastPayment = amount;
+        lastTip = tip;
         funds += amount + tip;
-        OnFundsChange();
+        OnBoxProcessed();
+        roundIncome += amount;
+        roundTips += tip;
+        roundCost += cost;
+
         return;
+    }
+
+    public float[] GetSummary()
+    {
+        return new float[] {roundIncome, roundTips, -roundCost};
+    }
+
+    public void ChangeFunds(float amount)
+    {
+        funds += amount;
+        OnBoxProcessed();
     }
 }

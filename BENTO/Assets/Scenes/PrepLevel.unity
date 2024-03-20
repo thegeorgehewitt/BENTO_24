@@ -4493,7 +4493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f722936e936b9a14cab20f7412c9268d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 20
+  duration: 12
   timerBar: {fileID: 1636116400}
   fundsText: {fileID: 2028462181}
 --- !u!1 &1683345416
