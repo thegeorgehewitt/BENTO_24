@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEditor.Build.Content;
 
 public class CookingSystem : MonoBehaviour
 {
@@ -22,10 +23,14 @@ public class CookingSystem : MonoBehaviour
     [SerializeField] private GameObject foodPrefab;
     // reference to the object which will be used to store prepped foods
     [SerializeField] private GameObject preppedArea;
+    //reference to game manager
+    [SerializeField] private MainManager mainManager;
 
     private void Start()
     {
-        // ref to droppable script on tis object
+        mainManager = GameObject.FindObjectOfType<MainManager>();
+
+        // ref to droppable script on this object
         droppable = GetComponent<Droppable>();
 
         // holding recipes
@@ -49,28 +54,32 @@ public class CookingSystem : MonoBehaviour
         recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice" };
 
         // holding available recipees
-        currentRecipes = new List<int>() { 1, 3, 4, 5, 6 };
+        currentRecipes = new List<int>() { 1, 2, 3, 4, 5, 6 };
     }
 
-    // to be used to add to available recipes
-    public void AddToRecipies()
+    // used to add to available recipes
+    public void AddToRecipies(int newRecipe)
     {
+        if (!currentRecipes.Contains(newRecipe))
+        {
+            currentRecipes.Add(newRecipe);
+        }
         return;
     }
 
     public void CheckRecipies()
     {
         // if valid reference to this objects droppable script held
-        if (droppable != null)
+        if (droppable)
         {
+            // fill out array variable with array of contents in slots
+            int[] contents = droppable.GetContents();
+            // sort into numerical order (allow comparison)
+            Array.Sort(contents);
+
             // loop for number of recipes in list
             for (int i = 1; i < recipes.Length; i++)
             {
-                // fill out array variable with array of contents in slots
-                int[] contents = droppable.GetContents();
-                // sort into numerical order (allow comparison)
-                Array.Sort(contents);
-
                 // if there is a match between the recipe and the contents
                 if (contents.SequenceEqual(recipes[i]))
                 {
@@ -85,10 +94,16 @@ public class CookingSystem : MonoBehaviour
                             // if slot found
                             if (freeSlot != null)
                             {
+                                if(mainManager)
+                                {
+                                    mainManager.AddToFoods(i);
+                                }
+
                                 // spawn new ingredient and save reference
                                 GameObject spawnedItem = Instantiate(foodPrefab, new Vector3(0, 0, 0), Quaternion.identity);
                                 // attepmt to save ref to new object's draggable script
                                 Draggable spawnedItemScript = spawnedItem.GetComponent<Draggable>();
+
                                 // if successfull
                                 if(spawnedItemScript != null)
                                 {
@@ -97,30 +112,20 @@ public class CookingSystem : MonoBehaviour
                                     // call function to update appearance of new object
                                     spawnedItemScript.UpdateVisual();
                                     // move new object to the aviable slot
-                                    spawnedItemScript.StartMoveTo(freeSlot.position);
-
+                                    spawnedItemScript.StartMoveTo(freeSlot);
+                                    // set spawn point to slot
+                                    spawnedItemScript.SetSpawnPoint(freeSlot);
+                                    // make child of slot
+                                    spawnedItem.transform.parent = freeSlot.transform;
                                 }
 
-                                // save reference to slots on object
-                                Transform[] slots = droppable.GetSlots();
-
-                                foreach (Transform slot in slots)
+                                // get stored food draggable scripts
+                                Draggable[] draggables = GetComponentsInChildren<Draggable>();
+                                foreach (Draggable draggable in draggables)
                                 {
-                                    // look for objects in the slot
-                                    RaycastHit2D[] hits = Physics2D.RaycastAll(slot.transform.position, Vector2.zero);
-                                    foreach (RaycastHit2D hit in hits)
-                                    {
-                                        // attempt to get ref to draggable script on found object
-                                        Draggable script = hit.transform.GetComponent<Draggable>();
-                                        // if found
-                                        if (script != null)
-                                        {
-                                            // call function to reset slot the item is being removed from
-                                            script.CheckLocationUp();
-                                            // move object back to their starting position
-                                            script.StartMoveTo(script.startPosition);
-                                        }
-                                    }
+                                    // reset owning slots and snap back to start
+                                    draggable.CheckLocationUp();
+                                    draggable.StartMoveTo(null);
                                 }
                             }
                         }

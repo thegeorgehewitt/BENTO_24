@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class Draggable : MonoBehaviour
 {
-    // saves intial position
-    public Vector3 startPosition;
     // determines speed of movement for slotting
     [SerializeField] private float moveTime = 0.4f;
 
@@ -17,14 +15,14 @@ public class Draggable : MonoBehaviour
     // indicate what type of ingredient/prepped food this is, rice/steamed rice (1), 
     [SerializeField] private int itemSubtype;
 
-    private void Start()
+    [SerializeField] protected Transform spawnPoint;
+
+    protected virtual void Start()
     {
-        // save position at start
-        startPosition = transform.position;
         UpdateVisual();
     }
 
-    public void CheckLocation()
+    public virtual void CheckLocation()
     {
         // cast for objects at item's location
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
@@ -47,7 +45,7 @@ public class Draggable : MonoBehaviour
                         transform.SetParent(nextFreeSlot, true);
 
                         // move objects to the slot's position
-                        StartMoveTo(nextFreeSlot.position);
+                        StartMoveTo(nextFreeSlot);
 
                         // terminate function
                         return;
@@ -56,36 +54,38 @@ public class Draggable : MonoBehaviour
             }
         }
 
+
         // move object back to it's start position
-        StartMoveTo(startPosition);
+        StartMoveTo(null);
+
     }
 
     public void CheckLocationUp()
     {
-        // cast for objects at item's location
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
-
-        // loop through every raycast hit
-        foreach (RaycastHit2D hit in hits)
+        // if has parent (is slotted)
+        if (transform.parent)
         {
-            if (hit.transform == transform.parent)
-            {
-                // attempt to save hit object's Slot script
-                Slot slot = hit.transform.GetComponent<Slot>();
+            //get slot script on parent
+            Slot slot = transform.parent.GetComponent<Slot>();
 
-                // if script found
-                if (slot)
-                {
-                    transform.parent = null;
-                    // set marker to show slot is empty
-                    slot.SetItem(0);
-                }
+            if (slot)
+            {
+                // set marker to show slot is empty
+                slot.SetItem(0);
+
+                // remove parentage
+                transform.parent = null;
             }
         }
     }
 
-    IEnumerator MoveTo(Vector3 endPosition)
+    IEnumerator MoveTo(Transform endPosition)
     {
+        if (endPosition == null)
+        {
+            endPosition = spawnPoint;
+        }
+
         // used to monitor progress through lerp
         float progress = 0.0f;
         // used at starting position for lerp
@@ -98,13 +98,15 @@ public class Draggable : MonoBehaviour
             progress += Time.deltaTime / moveTime;
 
             // update object position
-            transform.position = Vector3.Lerp(atStart, endPosition, Mathf.SmoothStep(0.0f, 1.0f, progress));
+            transform.position = Vector3.Lerp(atStart, endPosition.position, Mathf.SmoothStep(0.0f, 1.0f, progress));
 
             yield return null;
         }
 
         // set position to end position (remove overshoot from lerp)
-        transform.position = endPosition;
+        transform.position = endPosition.position;
+
+        AfterMoveTo();
 
         yield return null;
     }
@@ -117,13 +119,13 @@ public class Draggable : MonoBehaviour
     }
 
     // accessible function to intiate movement coroutine
-    public void StartMoveTo(Vector3 endPosition)
+    public void StartMoveTo(Transform endPosition)
     {
         StartCoroutine(MoveTo(endPosition));
     }
 
     // update visuals to match the item type and subtype
-    public void UpdateVisual()
+    public virtual void UpdateVisual()
     {
         // based on item type, change colour
         switch (itemType)
@@ -143,8 +145,25 @@ public class Draggable : MonoBehaviour
         transform.GetChild(0).GetComponent<TextMesh>().text = itemSubtype.ToString();
     }
 
+    // function to retrieve item type
     public int GetItemType()
     {
         return itemType;
+    }
+
+    protected virtual void AfterMoveTo()
+    {
+
+    }
+
+    // funciton to snap back to start position
+    public void ResetPosition()
+    {
+        transform.position = spawnPoint.position;
+    }
+
+    public void SetSpawnPoint(Transform spawn)
+    {
+        spawnPoint = spawn;
     }
 }
