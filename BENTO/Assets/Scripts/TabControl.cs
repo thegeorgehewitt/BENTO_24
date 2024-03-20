@@ -12,15 +12,17 @@ public class TabControl : MonoBehaviour
         {
             tabOpen = false;
             transform.Find("OpenPanel").position = new Vector3(transform.Find("OpenPanel").position.x - 500, transform.Find("OpenPanel").position.y, transform.Find("OpenPanel").position.z);
+            transform.Find("PanelBackground").position = new Vector3(transform.Find("PanelBackground").position.x - 500, transform.Find("PanelBackground").position.y, transform.Find("PanelBackground").position.z);
         }
         else
         { 
             tabOpen = true;
             transform.Find("OpenPanel").position = new Vector3(transform.Find("OpenPanel").position.x + 500, transform.Find("OpenPanel").position.y, transform.Find("OpenPanel").position.z);
+            transform.Find("PanelBackground").position = new Vector3(transform.Find("PanelBackground").position.x + 500, transform.Find("PanelBackground").position.y, transform.Find("PanelBackground").position.z);
+
         }
 
-
-        transform.Find("PanelBackground").gameObject.SetActive(tabOpen);
+        //transform.Find("PanelBackground").gameObject.SetActive(tabOpen);
 
     }
 }

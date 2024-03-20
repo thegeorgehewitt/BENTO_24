@@ -54,7 +54,7 @@ public class CookingSystem : MonoBehaviour
         recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice" };
 
         // holding available recipees
-        currentRecipes = new List<int>() { 1, 3, 4, 5, 6 };
+        currentRecipes = new List<int>() { 1, 2, 3, 4, 5, 6 };
     }
 
     // used to add to available recipes

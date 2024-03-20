@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
+
+    [SerializeField] private float funds = 1500;
+    public event Action OnFundsChange;
 
     [SerializeField] private GameObject draggablePrefab;
 
@@ -75,8 +79,19 @@ public class MainManager : MonoBehaviour
                 GameObject newObject = Instantiate(draggablePrefab, spawnPoints[i].transform.position, Quaternion.identity);
                 newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i]);
                 newObject.GetComponent<Draggable>().SetSpawnPoint(spawnPoints[i].transform);
-
             }
         }
+    }
+
+    public float GetFunds()
+    {
+        return funds;
+    }
+
+    public void ChangeFunds(float amount, float tip)
+    {
+        funds += amount + tip;
+        OnFundsChange();
+        return;
     }
 }

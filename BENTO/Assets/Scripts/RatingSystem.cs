@@ -18,11 +18,23 @@ public class RatingSystem : MonoBehaviour
         new List<int>{ 1, 2, 3, 6, 7 }
     };
 
+    // 2D array with food cost and price
+    private float[][] foodCostPrice =
+    {       
+        new float[] { 0.1f, 1 },
+        new float[] { 0.1f, 1 },
+        new float[] { 0.1f, 1 },
+        new float[] { 0.1f, 1 },
+        new float[] { 0.1f, 1 },
+        new float[] { 0.1f, 1 },
+        new float[] { 0.1f, 1 }
+    };
+
     [SerializeField] private List<int> requirements = new List<int>();
 
-    //[SerializeField] private GameObject ReqUI;
+    private MainManager mainManager;
 
-    public UnityEvent<List<int>> updateUI = new UnityEvent<List<int>>();
+    [SerializeField] private UnityEvent<List<int>> updateUI = new UnityEvent<List<int>>();
 
     private int rating = 0;
 
@@ -30,6 +42,7 @@ public class RatingSystem : MonoBehaviour
     void Start()
     {
         GenerateRequirements();
+        mainManager = FindObjectOfType<MainManager>();
     }
 
     // Update is called once per frame
@@ -62,6 +75,8 @@ public class RatingSystem : MonoBehaviour
                     {
                         // increase rating
                         rating++;
+
+                        mainManager.ChangeFunds(foodCostPrice[foodItem][2], rating);
                     }
                 }
             }
@@ -69,6 +84,7 @@ public class RatingSystem : MonoBehaviour
 
         // reset requirements
         GenerateRequirements();
+
         return rating;
     }
 
