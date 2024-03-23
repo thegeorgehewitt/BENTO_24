@@ -68,7 +68,7 @@ public class SC_OpenPhase : MonoBehaviour
         // if duration reached
         if (timeElapsed > duration && !roundEnd)
         {
-            mainManager.ChangeFunds(mainManager.GetSummary()[2]);
+            mainManager.ChangeFunds(-mainManager.GetSummary()[2]);
 
             if (roundEndScreen)
             {
@@ -80,7 +80,8 @@ public class SC_OpenPhase : MonoBehaviour
                     {
                         if (script.GetDisplayType() == 3)
                         {
-                            textDisplay.text = mainManager.GetSummary().Sum().ToString();
+                            float profit = mainManager.GetSummary()[0] + mainManager.GetSummary()[1] - mainManager.GetSummary()[2];
+                            textDisplay.text = profit.ToString();
                         }
                         else
                         {
@@ -93,9 +94,6 @@ public class SC_OpenPhase : MonoBehaviour
 
                 roundEndScreen.SetActive(true);
             }
-
-            // load next scene
-            //SceneManager.LoadScene("MainMenu");
         }
     }
 
@@ -126,7 +124,7 @@ public class SC_OpenPhase : MonoBehaviour
 
     public void LoadNextScene()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("ManagementPhase");
         return;
     }
 

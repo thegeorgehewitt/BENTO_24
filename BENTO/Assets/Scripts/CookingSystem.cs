@@ -9,15 +9,22 @@ using UnityEditor.Build.Content;
 public class CookingSystem : MonoBehaviour
 {
     // 2D array with recipe number and ingredients
-    private int[][] recipes;
-    // list defining which recipes can be used
-    private List<int> currentRecipes;
+    private int[][] recipes =
+    {
+        new int[] { 0, 0, 0 },
+        new int[] { 1, 0, 0 },
+        new int[] { 2, 0, 0 },
+        new int[] { 3, 0, 0 },
+        new int[] { 4, 0, 0 },
+        new int[] { 5, 0, 0 },
+        new int[] { 1, 2, 0 } 
+    };
 
     private Droppable droppable;
 
     // arrays to hold ingredient and recipe names
-    private string[] ingredientNames;
-    private string[] recipeNames;
+    private string[] ingredientNames = new string[] { "None", "Rice", "Veg", "Tofu", "Seaweed", "Nuts" };
+    private string[] recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice" };
 
     // reference to prepped food prefab, for instantiation
     [SerializeField] private GameObject foodPrefab;
@@ -35,36 +42,12 @@ public class CookingSystem : MonoBehaviour
 
         // holding recipes
         recipes = new int[7][];
-        recipes[0] = new int[] { 0, 0, 0 };
-        recipes[1] = new int[] { 1, 0, 0 };
-        recipes[2] = new int[] { 2, 0, 0 };
-        recipes[3] = new int[] { 3, 0, 0 };
-        recipes[4] = new int[] { 4, 0, 0 };
-        recipes[5] = new int[] { 5, 0, 0 };
-        recipes[6] = new int[] { 1, 2, 0 };
 
         // sort recipes into numerical order (allows comparison)
         foreach (int[] recipe in recipes)
         {
             Array.Sort(recipe);
         }
-
-        // holding ingredient and recipe refs
-        ingredientNames = new string[] { "None", "Rice", "Veg", "Tofu", "Seaweed", "Nuts" };
-        recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice" };
-
-        // holding available recipees
-        currentRecipes = new List<int>() { 1, 2, 3, 4, 5, 6 };
-    }
-
-    // used to add to available recipes
-    public void AddToRecipies(int newRecipe)
-    {
-        if (!currentRecipes.Contains(newRecipe))
-        {
-            currentRecipes.Add(newRecipe);
-        }
-        return;
     }
 
     public void CheckRecipies()
@@ -84,7 +67,7 @@ public class CookingSystem : MonoBehaviour
                 if (contents.SequenceEqual(recipes[i]))
                 {
                     // checks if matching recipe is present in available recipes
-                    if (currentRecipes.Contains(i))
+                    if (mainManager.GetCurrentRecipes().Contains(i))
                     {
                         // checks if this recipe has already been created in this phase
                         if (!preppedArea.GetComponent<Droppable>().GetContents().Contains(i))
