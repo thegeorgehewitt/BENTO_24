@@ -32,7 +32,7 @@ public class SC_PrepPhase : MonoBehaviour
 
         if (mainManager)
         {
-            mainManager.OnBoxProcessed += UpdateFundsText;
+            mainManager.OnFundsChange += UpdateFundsText;
         }
 
         UpdateFundsText();

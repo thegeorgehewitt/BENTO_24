@@ -38,7 +38,7 @@ public class SC_OpenPhase : MonoBehaviour
         mainManager = FindObjectOfType<MainManager>();
         if (mainManager)
         {
-            mainManager.OnBoxProcessed += UpdateFundsAndPaymentText;
+            mainManager.OnFundsChange += UpdateFundsAndPaymentText;
         }
 
         UpdateFundsAndPaymentText();

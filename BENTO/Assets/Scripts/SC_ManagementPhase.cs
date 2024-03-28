@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SC_ManagementPhase : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class SC_ManagementPhase : MonoBehaviour
 
     // reference to main manager script
     private MainManager mainManager;
+
+    // reference to UI text field for funds
+    [SerializeField] private TextMeshProUGUI fundsText;
 
     private string[] upgradeNames =
     {
@@ -33,8 +37,6 @@ public class SC_ManagementPhase : MonoBehaviour
         1
     };
 
-    private int purchased;
-
     private int[] availableUpgrades;
 
     protected virtual void Awake()
@@ -45,6 +47,13 @@ public class SC_ManagementPhase : MonoBehaviour
         }
 
         mainManager = FindObjectOfType<MainManager>();
+
+        if (mainManager)
+        {
+            mainManager.OnFundsChange += UpdateFundsText;
+        }
+
+        UpdateFundsText();
     }
 
     protected virtual void Start()
@@ -72,7 +81,6 @@ public class SC_ManagementPhase : MonoBehaviour
                     upgradeSlots[i].GetComponent<TextMeshProUGUI>().text = upgradeNames[j];
                     upgradeSlots[i].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = upgradeCost[j].ToString();
                     placed[j] = true;
-                    Debug.Log(purchased[j] + " " + placed[j]);
                     j = placed.Length;
                 }
 
@@ -82,11 +90,16 @@ public class SC_ManagementPhase : MonoBehaviour
 
     public void OnPurchase(int buttonIndex)
     {
-        purchased = availableUpgrades[buttonIndex];
+        // update button visuals to show item purchased
+        upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Purchased";
+        upgradeSlots[buttonIndex].transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.9137256f, 0.7607844f);
 
-        if(mainManager != null)
+
+        if (mainManager != null)
         {
+            mainManager.ChangeFunds(-upgradeCost[availableUpgrades[buttonIndex]]);
             mainManager.ProcessUpgrade(availableUpgrades[buttonIndex]);
+            UpdateFundsText();
         }
     }
 
@@ -94,5 +107,13 @@ public class SC_ManagementPhase : MonoBehaviour
     {
         SceneManager.LoadScene("PrepLevel");
         return;
+    }
+
+    private void UpdateFundsText()
+    {
+        if (fundsText)
+        {
+            fundsText.text = ("B " + mainManager.GetFunds().ToString());
+        }
     }
 }

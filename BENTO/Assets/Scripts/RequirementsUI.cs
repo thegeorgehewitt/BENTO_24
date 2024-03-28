@@ -22,7 +22,7 @@ public class RequirementsUI : MonoBehaviour
         //mainManager = FindObjectOfType<MainManager>();
         //if (mainManager)
         //{
-        //    mainManager.OnBoxProcessed += UpdatePaymentUI;
+        //    mainManager.OnFundsChange += UpdatePaymentUI;
         //}
     }
 

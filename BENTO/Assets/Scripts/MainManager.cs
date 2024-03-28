@@ -20,7 +20,7 @@ public class MainManager : MonoBehaviour
     private float roundTips = 0;
     private float roundIncome = 0;
 
-    public event Action OnBoxProcessed;
+    public event Action OnFundsChange;
 
     [SerializeField] private GameObject draggablePrefab;
 
@@ -30,7 +30,6 @@ public class MainManager : MonoBehaviour
 
     // holding available recipes
     List<int> currentRecipes = new List<int>() { 1, 2, 3, 4, 5 };
-
 
     private bool[] isPurhased =
     {
@@ -151,7 +150,7 @@ public class MainManager : MonoBehaviour
         lastPayment = amount;
         lastTip = tip;
         funds += amount + tip;
-        OnBoxProcessed();
+        OnFundsChange();
         roundIncome += amount;
         roundTips += tip;
         roundCost += cost;
@@ -167,7 +166,7 @@ public class MainManager : MonoBehaviour
     public void ChangeFunds(float amount)
     {
         funds += amount;
-        OnBoxProcessed();
+        OnFundsChange();
     }
 
     public List<int> GetCurrentRecipes()
