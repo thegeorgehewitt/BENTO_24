@@ -20,7 +20,7 @@ public class SC_ManagementPhase : MonoBehaviour
          "New Ingredient: 6",
          "New Ingredient: 7",
          "New Recipe: 6",
-         "Upgrade 4",
+         "New Recipe: 7",
          "Upgrade 5",
          "Upgrade 6",
          "Upgrade 7"

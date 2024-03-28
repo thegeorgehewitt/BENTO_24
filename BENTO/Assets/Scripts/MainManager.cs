@@ -175,7 +175,7 @@ public class MainManager : MonoBehaviour
     }
 
     // used to add to available recipes
-    public void AddToRecipies(int newRecipe)
+    public void AddToRecipes(int newRecipe)
     {
         if (!currentRecipes.Contains(newRecipe))
         {
@@ -197,7 +197,10 @@ public class MainManager : MonoBehaviour
                 AddToIngredients(7);
                 break;
             case 2:
-                AddToRecipies(6);
+                AddToRecipes(6);
+                break;
+            case 3:
+                AddToRecipes(7);
                 break;
             default:
                 break;

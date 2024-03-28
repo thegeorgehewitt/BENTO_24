@@ -17,14 +17,15 @@ public class CookingSystem : MonoBehaviour
         new int[] { 3, 0, 0 },
         new int[] { 4, 0, 0 },
         new int[] { 5, 0, 0 },
-        new int[] { 1, 2, 0 } 
+        new int[] { 1, 2, 0 }, 
+        new int[] { 1, 3, 0 }
     };
 
     private Droppable droppable;
 
     // arrays to hold ingredient and recipe names
     private string[] ingredientNames = new string[] { "None", "Rice", "Veg", "Tofu", "Seaweed", "Nuts" };
-    private string[] recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice" };
+    private string[] recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice", "Tofu Rice" };
 
     // reference to prepped food prefab, for instantiation
     [SerializeField] private GameObject foodPrefab;

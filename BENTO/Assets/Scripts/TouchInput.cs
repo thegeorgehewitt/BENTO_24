@@ -14,7 +14,7 @@ public class TouchInput : MonoBehaviour
 
     private void Update()
     {
-        // check if currently dragging, only one touch input it present and this touch has ended
+        // check if currently dragging, only one touch input is present and this touch has ended
         if (isDragging && Input.touchCount == 1 && (Input.GetTouch(0).phase == TouchPhase.Ended))
         {
             // stop the drag

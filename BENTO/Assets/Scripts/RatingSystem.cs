@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class RatingSystem : MonoBehaviour
 {
+    // list of nutrients/flavours in recipe
     private List<int>[] recipeInfo = {
         new List<int>{ 0 },
         new List<int>{ 1 },
@@ -15,7 +16,8 @@ public class RatingSystem : MonoBehaviour
         new List<int>{ 4 },
         new List<int>{ 2, 6, 7 },
         new List<int>{ 2, 4, 6 },
-        new List<int>{ 1, 2, 3, 6, 7 }
+        new List<int>{ 1, 2, 3, 6, 7 },
+        new List<int>{ 1, 4, 6 }
     };
 
     // 2D array with food cost and price
@@ -27,6 +29,7 @@ public class RatingSystem : MonoBehaviour
         new float[] { 0.5f, 1 },
         new float[] { 0.5f, 1 },
         new float[] { 0.5f, 1 },
+        new float[] { 0.8f, 2 },
         new float[] { 0.8f, 2 }
     };
 
