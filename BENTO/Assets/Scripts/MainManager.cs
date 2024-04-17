@@ -4,12 +4,22 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Linq;
 using System;
+using Unity.VisualScripting;
 
 public class MainManager : MonoBehaviour
 {
     public static MainManager Instance;
 
     [SerializeField] private float funds = 1500;
+
+    private float lastPayment;
+    private float lastTip;
+    private float[] paymentInfo;
+
+    private float roundCost = 0;
+    private float roundTips = 0;
+    private float roundIncome = 0;
+
     public event Action OnFundsChange;
 
     [SerializeField] private GameObject draggablePrefab;
@@ -18,6 +28,19 @@ public class MainManager : MonoBehaviour
 
     List<int> availableFoods = new List<int>();
 
+    // holding available recipes
+    List<int> currentRecipes = new List<int>() { 1, 2, 3, 4, 5 };
+
+    private bool[] isPurhased =
+    {
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    };
 
     private void Awake()
     {
@@ -36,13 +59,12 @@ public class MainManager : MonoBehaviour
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void AddToFoods(int newFood)
-    {
-        availableFoods.Add(newFood);
-    }
-
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        roundCost = 0;
+        roundTips = 0;
+        roundIncome = 0;
+
         int draggableType;
         int[] toSpawn;
 
@@ -62,15 +84,26 @@ public class MainManager : MonoBehaviour
                 availableFoods.Clear();
                 break;
 
+            case "ManagementPhase":
+                SC_ManagementPhase sceneControl = FindObjectOfType<SC_ManagementPhase>();
+                if(sceneControl)
+                {
+                    sceneControl.Initialize(isPurhased);
+                }
+                draggableType = 0;
+                toSpawn = Array.Empty<int>();
+                return;
+
             default:
                 return;
         }
 
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        spawnPoints = spawnPoints.OrderBy(go => go.transform.position.x).ToArray();
-        spawnPoints = spawnPoints.OrderBy(go => -go.transform.position.y).ToArray();
-
-        Debug.Log(spawnPoints.Length);
+        if (spawnPoints != null && spawnPoints.Length > 0)
+        {
+            spawnPoints = spawnPoints.OrderBy(go => go.transform.position.x).ToArray();
+            spawnPoints = spawnPoints.OrderBy(go => -go.transform.position.y).ToArray();
+        }
 
         for (int i = 0; i < spawnPoints.Length; i++)
         {
@@ -83,15 +116,94 @@ public class MainManager : MonoBehaviour
         }
     }
 
+
+    public void AddToFoods(int newFood)
+    {
+        if (!availableFoods.Contains(newFood))
+        {
+            availableFoods.Add(newFood);
+        }
+    }
+
+    public void AddToIngredients(int newIngredient)
+    {
+        if (!availableIngredients.Contains(newIngredient))
+        {
+            availableIngredients.Add(newIngredient);
+        }
+    }
+
+
     public float GetFunds()
     {
         return funds;
     }
 
-    public void ChangeFunds(float amount, float tip)
+    public float[] GetPayment()
     {
+        paymentInfo = new float[] { lastPayment , lastTip };
+        return paymentInfo;
+    }
+
+    public void ProcessBox(float amount, float tip, float cost)
+    {
+        lastPayment = amount;
+        lastTip = tip;
         funds += amount + tip;
         OnFundsChange();
+        roundIncome += amount;
+        roundTips += tip;
+        roundCost += cost;
+
         return;
+    }
+
+    public float[] GetSummary()
+    {
+        return new float[] {roundIncome, roundTips, roundCost};
+    }
+
+    public void ChangeFunds(float amount)
+    {
+        funds += amount;
+        OnFundsChange();
+    }
+
+    public List<int> GetCurrentRecipes()
+    {
+        return currentRecipes;
+    }
+
+    // used to add to available recipes
+    public void AddToRecipes(int newRecipe)
+    {
+        if (!currentRecipes.Contains(newRecipe))
+        {
+            currentRecipes.Add(newRecipe);
+        }
+        return;
+    }
+
+    public void ProcessUpgrade(int upgradeIndex)
+    {
+        isPurhased[upgradeIndex] = true;
+
+        switch (upgradeIndex)
+        {
+            case 0:
+                AddToIngredients(6);
+                break;
+            case 1:
+                AddToIngredients(7);
+                break;
+            case 2:
+                AddToRecipes(6);
+                break;
+            case 3:
+                AddToRecipes(7);
+                break;
+            default:
+                break;
+        }
     }
 }
