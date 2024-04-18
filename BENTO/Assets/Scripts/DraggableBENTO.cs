@@ -29,7 +29,9 @@ public class DraggableBENTO : Draggable
                 if ( BENTODroppable != null )
                 {
                     // run rating script
-                    Debug.Log("rating: " + ratingSystem.RateBento(BENTODroppable));
+                    ratingSystem.RateBento(BENTODroppable);
+
+                    //Debug.Log("rating: " + ratingSystem.RateBento(BENTODroppable));
                 }
             }
         }

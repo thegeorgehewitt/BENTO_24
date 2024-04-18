@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
+    // create instance for the script
+    public static TouchInput instance;
+
     // used to store the world position that alines with the players current touching position
     private Vector2 touchPosition;
 
@@ -11,6 +15,21 @@ public class TouchInput : MonoBehaviour
     private bool isDragging;
     // stores the current/most recently dragged object
     private Draggable lastDragged;
+
+    // create event for new touch
+    public static event Action OnTouch;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void Update()
     {
@@ -41,6 +60,9 @@ public class TouchInput : MonoBehaviour
                 // cast for objects where the player is touching
                 RaycastHit2D[] hits = Physics2D.RaycastAll(touchPosition, Vector2.zero);
 
+                // check if anything is subscribed, then invoke
+                OnTouch?.Invoke();
+                
                 foreach (RaycastHit2D hit in hits)
                 {
                     // if an item is found

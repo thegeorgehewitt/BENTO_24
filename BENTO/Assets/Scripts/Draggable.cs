@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Draggable : MonoBehaviour
     // indicate what type of ingredient/prepped food this is, rice/steamed rice (1), 
     [SerializeField] private int itemSubtype;
 
+    // save starting position
     [SerializeField] protected Transform spawnPoint;
 
     protected virtual void Start()
@@ -84,6 +86,11 @@ public class Draggable : MonoBehaviour
         if (endPosition == null)
         {
             endPosition = spawnPoint;
+        }
+
+        if ((endPosition.position - transform.position).magnitude < 1f)
+        {
+            // activate UI
         }
 
         // used to monitor progress through lerp
