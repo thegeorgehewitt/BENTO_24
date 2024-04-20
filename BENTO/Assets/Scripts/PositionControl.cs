@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// sets position of 'prepped food area' based on position of edge of screen
 public class PositionControl : MonoBehaviour
 {
     [SerializeField] private GameObject GuideUI;

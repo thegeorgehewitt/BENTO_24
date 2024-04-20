@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// store recipes and names
 public class RecipeInfo : MonoBehaviour
 {
     public int[,] recipes = {

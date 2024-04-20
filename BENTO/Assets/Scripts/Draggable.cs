@@ -83,11 +83,13 @@ public class Draggable : MonoBehaviour
 
     IEnumerator MoveTo(Transform endPosition)
     {
+        // default end position to spawn point if a position hasn't been passed in
         if (endPosition == null)
         {
             endPosition = spawnPoint;
         }
 
+        // to be used for pop-up UI
         if ((endPosition.position - transform.position).magnitude < 1f)
         {
             // activate UI
@@ -170,6 +172,7 @@ public class Draggable : MonoBehaviour
         transform.position = spawnPoint.position;
     }
 
+    // update spawn point variable
     public void SetSpawnPoint(Transform spawn)
     {
         spawnPoint = spawn;

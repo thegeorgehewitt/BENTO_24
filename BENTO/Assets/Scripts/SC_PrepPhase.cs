@@ -23,18 +23,19 @@ public class SC_PrepPhase : MonoBehaviour
     // reference to main manager script
     private MainManager mainManager;
 
-
     private void Start()
     {
+        // set time to standard
         Time.timeScale = 1.0f;
 
+        // get ref to main manager and subcribe to funds change event
         mainManager = FindObjectOfType<MainManager>();
-
         if (mainManager)
         {
             mainManager.OnFundsChange += UpdateFundsText;
         }
 
+        // update UI
         UpdateFundsText();
     }
 
@@ -43,6 +44,7 @@ public class SC_PrepPhase : MonoBehaviour
         // update elapsed time
         timeElapsed += Time.deltaTime;
 
+        // update timer UI
         if (timerBar)
         {
             timerBar.fillAmount = 1 - (timeElapsed / duration);
@@ -56,11 +58,13 @@ public class SC_PrepPhase : MonoBehaviour
         }
     }
 
+    // main menu button function
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
+    // function to update funds UI
     private void UpdateFundsText()
     {
         if (fundsText)

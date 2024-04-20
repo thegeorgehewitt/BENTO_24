@@ -6,6 +6,7 @@ public class TabControl : MonoBehaviour
 {
     bool tabOpen = true;
 
+    // move UI off-screen or on-screen to open/close
     public void ToggleTab()
     {
         if(tabOpen)
@@ -21,8 +22,5 @@ public class TabControl : MonoBehaviour
             transform.Find("PanelBackground").position = new Vector3(transform.Find("PanelBackground").position.x + 500, transform.Find("PanelBackground").position.y, transform.Find("PanelBackground").position.z);
 
         }
-
-        //transform.Find("PanelBackground").gameObject.SetActive(tabOpen);
-
     }
 }

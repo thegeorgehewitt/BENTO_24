@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PauseButton : MonoBehaviour
 {
+    // to hold pause menu object
     [SerializeField] private GameObject pauseMenu;
 
+    // button function - open/close menu and pause/play time
     public void Pressed()
     {
-
         if (Time.timeScale > 0.0f)
         {
             Time.timeScale = 0.0f;

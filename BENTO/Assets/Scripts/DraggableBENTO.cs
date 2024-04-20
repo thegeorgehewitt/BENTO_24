@@ -71,7 +71,5 @@ public class DraggableBENTO : Draggable
             // turn on renderer
             GetComponent<Renderer>().enabled = true;
         }
-        
     }
-
 }
