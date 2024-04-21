@@ -7,8 +7,6 @@ using UnityEngine.UIElements;
 
 public class DraggableBENTO : Draggable
 {
-    protected override void Start() { }
-
     // override function as not needed and could cause errors
     public override void UpdateVisual() { }
 
@@ -30,8 +28,6 @@ public class DraggableBENTO : Draggable
                 {
                     // run rating script
                     ratingSystem.RateBento(BENTODroppable);
-
-                    //Debug.Log("rating: " + ratingSystem.RateBento(BENTODroppable));
                 }
             }
         }
@@ -59,9 +55,6 @@ public class DraggableBENTO : Draggable
                 // turn on renderer
                 draggable.transform.GetComponent<Renderer>().enabled = true;
             }
-
-            // save reference to slots on object
-            Transform[] slots = transform.GetComponent<Droppable>().GetSlots();
 
             // reset customer slot
             CheckLocationUp();

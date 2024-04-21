@@ -39,7 +39,7 @@ public class SC_OpenPhase : MonoBehaviour
         Time.timeScale = 1.0f;
 
         // get ref to main manager and subcribe to funds change event
-        mainManager = FindObjectOfType<MainManager>();
+        mainManager = MainManager.Instance;
         if (mainManager)
         {
             mainManager.OnFundsChange += UpdateFundsAndPaymentText;

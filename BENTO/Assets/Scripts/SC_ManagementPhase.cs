@@ -51,7 +51,7 @@ public class SC_ManagementPhase : MonoBehaviour
             upgradeSlot.SetActive(false);
         }
 
-        mainManager = FindObjectOfType<MainManager>();
+        mainManager = MainManager.Instance;
 
         // subcribe to funds change to keep funds UI up to date
         if (mainManager)

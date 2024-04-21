@@ -6,17 +6,13 @@ using UnityEngine.UI;
 
 public class RequirementsUI : MonoBehaviour
 {
-
+    // will hold ref to slots for requirements
     TextMeshProUGUI[] slots;
-
-    //RatingSystem ratingSystem;
-
-    // reference to main manager script
-    private MainManager mainManager;
 
     // requirements UI updates to show new requirements
     public void UpdateRequirements(List<int> newValues)
     {
+        // get all the slots
         slots = GetComponentsInChildren<TextMeshProUGUI>();
 
         for (int i = 0; i < slots?.Length; i++)

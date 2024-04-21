@@ -44,6 +44,7 @@ public class Draggable : MonoBehaviour
                     // if free slot available
                     if (nextFreeSlot != null)
                     {
+                        // make child of slot object017uj
                         transform.SetParent(nextFreeSlot, true);
 
                         // move objects to the slot's position

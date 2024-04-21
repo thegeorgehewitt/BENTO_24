@@ -48,13 +48,7 @@ public class RatingSystem : MonoBehaviour
     void Start()
     {
         GenerateRequirements();
-        mainManager = FindObjectOfType<MainManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        mainManager = MainManager.Instance;
     }
 
     public int RateBento(Droppable BENTODroppable)
@@ -83,11 +77,12 @@ public class RatingSystem : MonoBehaviour
                     // get food type for current slot
                     int foodItem = foodHeld[slot];
 
-
+                    // only on first loop
                     if (req == 0)
                     {
                         if (foodItem != 0)
                         {
+                            // add price of food to cost/price
                             boxPrice += foodCostPrice[foodItem][1];
                             boxCost += foodCostPrice[foodItem][0];
                         }
@@ -102,7 +97,12 @@ public class RatingSystem : MonoBehaviour
                     }
                 }
             }
-            mainManager.ProcessBox(boxPrice, rating, boxCost);
+
+            // update main manager with results
+            if(mainManager)
+            {
+                mainManager.ProcessBox(boxPrice, rating, boxCost);
+            }
             boxPrice = 0;
             boxCost = 0;
         }
@@ -116,8 +116,10 @@ public class RatingSystem : MonoBehaviour
     // reset requirements
     private void GenerateRequirements()
     {
+        // clear previous requirements
         requirements.Clear();
 
+        // randomise new values for requirements
         int quantity = Random.Range(1, 4);
         for (int i = 0; i < quantity; i++)
         {
@@ -132,6 +134,7 @@ public class RatingSystem : MonoBehaviour
             }
         }
 
+        // display new requirements
         updateUI.Invoke(requirements);
     }
 }

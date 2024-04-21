@@ -36,13 +36,10 @@ public class CookingSystem : MonoBehaviour
 
     private void Start()
     {
-        mainManager = GameObject.FindObjectOfType<MainManager>();
+        mainManager = MainManager.Instance;
 
         // ref to droppable script on this object
         droppable = GetComponent<Droppable>();
-
-        //// holding recipes
-        //recipes = new int[7][];
 
         // sort recipes into numerical order (allows comparison)
         foreach (int[] recipe in recipes)

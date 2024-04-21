@@ -8,24 +8,32 @@ using Unity.VisualScripting;
 
 public class MainManager : MonoBehaviour
 {
+    // make singleton
     public static MainManager Instance;
 
+    // hold player funds
     [SerializeField] private float funds = 1500;
 
+    // hold info on payments
     private float lastPayment;
     private float lastTip;
     private float[] paymentInfo;
 
+    // track round costs/income
     private float roundCost = 0;
     private float roundTips = 0;
     private float roundIncome = 0;
 
+    // action for change in funds, to update UI etc.
     public event Action OnFundsChange;
 
+    // prefab for spawning new draggables
     [SerializeField] private GameObject draggablePrefab;
 
+    // track which ingredients the player can use
     List<int> availableIngredients = new List<int>{ 1, 2, 3, 4, 5 };
 
+    // track which foods have been prepped this round
     List<int> availableFoods = new List<int>();
 
     // holding available recipes
