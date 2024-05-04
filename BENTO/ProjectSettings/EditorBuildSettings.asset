@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PrepLevel.unity
-    guid: a55d94d895ab00d4387c4e47cdb344b0
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 0843e10ef223af04c80255f230712231
+  - enabled: 1
+    path: Assets/Scenes/PrepLevel.unity
+    guid: a55d94d895ab00d4387c4e47cdb344b0
   - enabled: 1
     path: Assets/Scenes/OpenLevel.unity
     guid: 513b04135b4bc4c4aba6ca6c3bb6da8b
@@ -19,4 +19,5 @@ EditorBuildSettings:
     guid: 1827943b6309d514a8978a3fe5050080
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7b26eea9b016249408640f1945404874, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: ff0aa1462a144b140bb353a22eca9097, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 11bb9e7872c3874409bcff39fce798b8, type: 2}

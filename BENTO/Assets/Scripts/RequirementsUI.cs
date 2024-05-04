@@ -6,31 +6,36 @@ using UnityEngine.UI;
 
 public class RequirementsUI : MonoBehaviour
 {
-    // will hold ref to slots for requirements
-    TextMeshProUGUI[] slots;
+    [SerializeField] private Sprite[] requirementSprites;
+
+    Image[] slots;
+
+    private void Awake()
+    {
+        // get all the slots
+        slots = GetComponentsInChildren<Image>();
+    }
 
     // requirements UI updates to show new requirements
     public void UpdateRequirements(List<int> newValues)
     {
-        // get all the slots
-        slots = GetComponentsInChildren<TextMeshProUGUI>();
-
         for (int i = 0; i < slots?.Length; i++)
         {
             // disable all
-            slots[i].transform.parent.gameObject.GetComponent<Image>().enabled = false;
+            slots[i].enabled = false;
+
             // update value and activate used slots
             if (i < newValues.Count)
             {
-                slots[i].SetText(newValues[i].ToString());
-                slots[i].transform.parent.gameObject.GetComponent<Image>().enabled = true;
+                slots[i].sprite = requirementSprites[newValues[i]];
+                //slots[i].SetText(newValues[i].ToString());
+                slots[i].enabled = true;
             }
             else
             {
                 // reset value of unused slots
-                slots[i].SetText("");
+                //slots[i].SetText("");
             }
         }
     }
-
 }

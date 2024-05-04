@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using System.Linq;
 using System;
-using Unity.VisualScripting;
 
 public class MainManager : MonoBehaviour
 {
@@ -38,6 +37,10 @@ public class MainManager : MonoBehaviour
 
     // holding available recipes
     List<int> currentRecipes = new List<int>() { 1, 2, 3, 4, 5 };
+
+    [SerializeField] public Sprite[] ingredientSprites;
+    [SerializeField] public Sprite[] foodSprites;
+
 
     // used to track if upgrades have been purchased
     private bool[] isPurhased =
@@ -130,7 +133,21 @@ public class MainManager : MonoBehaviour
             if (i < toSpawn.Length)
             {
                 GameObject newObject = Instantiate(draggablePrefab, spawnPoints[i].transform.position, Quaternion.identity);
-                newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i]);
+                if (draggableType == 1)
+                {
+                    if (i < ingredientSprites.Length)
+                    {
+                        newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i], ingredientSprites[i]);
+                    }
+                }
+                else if (draggableType == 2)
+                {
+                    if (i < foodSprites.Length)
+                    {
+                        newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i], foodSprites[i]);
+                    }
+                }
+                newObject.GetComponent<Draggable>().UpdateVisual();
                 newObject.GetComponent<Draggable>().SetSpawnPoint(spawnPoints[i].transform);
             }
         }
