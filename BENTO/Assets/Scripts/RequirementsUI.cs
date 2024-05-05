@@ -28,13 +28,7 @@ public class RequirementsUI : MonoBehaviour
             if (i < newValues.Count)
             {
                 slots[i].sprite = requirementSprites[newValues[i]];
-                //slots[i].SetText(newValues[i].ToString());
                 slots[i].enabled = true;
-            }
-            else
-            {
-                // reset value of unused slots
-                //slots[i].SetText("");
             }
         }
     }

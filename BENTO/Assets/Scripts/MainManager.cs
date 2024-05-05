@@ -94,6 +94,14 @@ public class MainManager : MonoBehaviour
             case "PrepLevel":
                 draggableType = 1;
                 toSpawn = availableIngredients.ToArray();
+
+                // get recipes UI script
+                RecipeAllocation recipeAllocation = FindObjectOfType<RecipeAllocation>();
+                if (recipeAllocation != null)
+                {
+                    // prepare visuals
+                    recipeAllocation.InitializeRecipes(currentRecipes);
+                }
                 break;
 
             // if Open Level - set draggable type to prepped food (2) and set prepped food from previous round to be spawned, then clear this for the next time

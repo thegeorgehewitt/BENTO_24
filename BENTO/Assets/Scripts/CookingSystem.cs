@@ -29,7 +29,7 @@ public class CookingSystem : MonoBehaviour
         new int[] { 1, 8, 0 }, //banh chay
         new int[] { 1, 2, 4 }, //sushi
         new int[] { 2, 3, 6 }, //sandwich
-        new int[] { 2, 3, 6 } //empanadas
+        new int[] { 3, 6, 8 } //empanadas
     };
 
     private Droppable droppable;

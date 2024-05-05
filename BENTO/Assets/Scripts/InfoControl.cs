@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InfoControl : MonoBehaviour
 {
@@ -37,7 +38,10 @@ public class InfoControl : MonoBehaviour
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                transform.GetChild(i).gameObject.SetActive(true);
+                if(transform.GetChild(i).GetComponent<Image>().sprite != null)
+                {
+                    transform.GetChild(i).gameObject.SetActive(true);
+                }
             }
             infoVisible = true;
         }

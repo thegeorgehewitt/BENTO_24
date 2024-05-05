@@ -15,6 +15,7 @@ public class Draggable : MonoBehaviour
     // save starting position
     [SerializeField] protected Transform spawnPoint;
 
+    // sprite to be assigned to draggable
     [SerializeField] private Sprite spriteToApply;
 
     protected virtual void Start()
@@ -133,25 +134,14 @@ public class Draggable : MonoBehaviour
         StartCoroutine(MoveTo(endPosition));
     }
 
-    // update visuals to match the item type and subtype
+    // update visuals to match the item type/subtype
     public virtual void UpdateVisual()
     {
-        // based on item type, change colour
-        switch (itemType)
+        if (itemType == 1 || itemType == 2)
         {
-            case 1:
-                transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spriteToApply;
-                break;
-            case 2:
-                transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spriteToApply;
-                break;
-            case 3:
-                return;
-            default:
-                return;
+            // set sprite for draggable object
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spriteToApply;
         }
-        // change text to display subtype
-        //transform.GetChild(0).GetComponent<TextMesh>().text = itemSubtype.ToString();
     }
 
     // function to retrieve item type
