@@ -27,7 +27,7 @@ public class RequirementsUI : MonoBehaviour
             // update value and activate used slots
             if (i < newValues.Count)
             {
-                slots[i].sprite = requirementSprites[newValues[i]];
+                slots[i].sprite = requirementSprites[newValues[i]-1];
                 slots[i].enabled = true;
             }
         }

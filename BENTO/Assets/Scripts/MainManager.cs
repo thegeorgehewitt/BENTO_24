@@ -145,14 +145,14 @@ public class MainManager : MonoBehaviour
                 {
                     if (i < ingredientSprites.Length)
                     {
-                        newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i], ingredientSprites[i]);
+                        newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i], ingredientSprites[toSpawn[i]-1]);
                     }
                 }
                 else if (draggableType == 2)
                 {
                     if (i < foodSprites.Length)
                     {
-                        newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i], foodSprites[i]);
+                        newObject.GetComponent<Draggable>().SetTypes(draggableType, toSpawn[i], foodSprites[toSpawn[i]-1]);
                     }
                 }
                 newObject.GetComponent<Draggable>().UpdateVisual();

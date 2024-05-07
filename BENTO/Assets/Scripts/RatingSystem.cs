@@ -14,11 +14,11 @@ public class RatingSystem : MonoBehaviour
         new List<int>{ 1 }, //steamed rice
         new List<int>{ 4 }, //salad
         new List<int>{ 2 }, //tofu
-        new List<int>{ 5 }, //seaweed
+        new List<int>{ 4, 5 }, //seaweed
         new List<int>{ 4, 5 }, //mushroom soup
         new List<int>{ 1 }, //bread
         new List<int>{ 1, 6 }, //lollipop
-        new List<int>{ 1, 5 }, //onigiri
+        new List<int>{ 1, 4, 5 }, //onigiri
         new List<int>{ 1, 4, 6 }, //mixed rice
         new List<int>{ 1, 4, 5, 6 }, //mushroom pasta
         new List<int>{ 2, 4, 5 }, //miso soup
@@ -57,7 +57,7 @@ public class RatingSystem : MonoBehaviour
         new float[] { 1.4f, 2 } //empanadas
     };
 
-    [SerializeField] private List<int> requirements = new List<int>();
+    [SerializeField] private List<int> requirements = new List<int>(); // 1-7 relating to food info
 
     private MainManager mainManager;
 
@@ -94,7 +94,7 @@ public class RatingSystem : MonoBehaviour
 
 
             //for each requirement from custoemr, counts the number of occurances in the foods
-            for (int req = 0; req < requirements.Count; req++)
+            for (int reqIndex = 0; reqIndex < requirements.Count; reqIndex++)
             {            
                 // repeat for each slot
                 for (int slot = 0; slot < foodHeld.Length; slot++)
@@ -103,7 +103,7 @@ public class RatingSystem : MonoBehaviour
                     int foodItem = foodHeld[slot];
 
                     // only on first loop
-                    if (req == 0)
+                    if (reqIndex == 0)
                     {
                         if (foodItem != 0)
                         {
@@ -112,10 +112,9 @@ public class RatingSystem : MonoBehaviour
                             boxCost += foodCostPrice[foodItem][0];
                         }
                     }
-                                       
-
+                    
                     // if food contains current requirement check
-                    if (recipeInfo[foodItem].Contains(requirements[req]))
+                    if (recipeInfo[foodItem].Contains(requirements[reqIndex]))
                     {
                         // increase rating
                         rating++;
@@ -151,7 +150,7 @@ public class RatingSystem : MonoBehaviour
             int newValue = 0;
             while (!requirements.Contains(newValue))
             {
-                newValue = Random.Range(1, 7);
+                newValue = Random.Range(1, 8);
                 if (!requirements.Contains(newValue))
                 {
                     requirements.Add(newValue);
