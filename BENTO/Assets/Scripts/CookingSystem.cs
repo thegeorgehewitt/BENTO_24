@@ -4,7 +4,6 @@ using System.Linq;
 using System;
 using UnityEditor;
 using UnityEngine;
-using UnityEditor.Build.Content;
 
 public class CookingSystem : MonoBehaviour
 {
@@ -12,20 +11,32 @@ public class CookingSystem : MonoBehaviour
     private int[][] recipes =
     {
         new int[] { 0, 0, 0 },
-        new int[] { 1, 0, 0 },
-        new int[] { 2, 0, 0 },
-        new int[] { 3, 0, 0 },
-        new int[] { 4, 0, 0 },
-        new int[] { 5, 0, 0 },
-        new int[] { 1, 2, 0 }, 
-        new int[] { 1, 3, 0 }
+        new int[] { 1, 0, 0 }, //steamed rice
+        new int[] { 2, 0, 0 }, //salad
+        new int[] { 3, 0, 0 }, //tofu
+        new int[] { 4, 0, 0 }, //seaweed
+        new int[] { 5, 0, 0 }, //mushroom soup
+        new int[] { 6, 0, 0 }, //bread
+        new int[] { 7, 0, 0 }, //lollipop
+        new int[] { 1, 4, 0 }, //onigiri
+        new int[] { 1, 2, 0 }, //mixed rice
+        new int[] { 5, 6, 0 }, //mushroom pasta
+        new int[] { 4, 3, 0 }, //miso soup
+        new int[] { 1, 5, 0 }, //mushroom rice
+        new int[] { 1, 7, 0 }, //sum sum
+        new int[] { 1, 3, 8 }, //chili and rice
+        new int[] { 5, 7, 0 }, //cookie
+        new int[] { 1, 8, 0 }, //banh chay
+        new int[] { 1, 2, 4 }, //sushi
+        new int[] { 2, 3, 6 }, //sandwich
+        new int[] { 3, 6, 8 } //empanadas
     };
 
     private Droppable droppable;
 
     // arrays to hold ingredient and recipe names
-    private string[] ingredientNames = new string[] { "None", "Rice", "Veg", "Tofu", "Seaweed", "Nuts" };
-    private string[] recipeNames = new string[] { "None", "Steamed Rice", "Stir Fried Veg", "Crispy Tofu", "Seaweed Snack", "Roasted Peanuts", "Fried Rice", "Tofu Rice" };
+    private string[] ingredientNames = new string[] { "None", "Rice", "Veg", "Tofu", "Seaweed", "Mushrooms", "Flour", "Sugar", "Beans"  };
+    private string[] recipeNames = new string[] { "None", "Steamed Rice", "Salad", "Crispy Tofu", "Seaweed Snack", "Mushroom Soup", "Bread", "Lollipop", "Onigiri", "Mixed Rice", "Mushroom Pasta", "Miso Soup", "Mushroom Rice", "Sum Sum", "Chili and Rice", "Cookie", "Banh Chay", "Sushi", "Sandwich", "Empanadas" };
 
     // reference to prepped food prefab, for instantiation
     [SerializeField] private GameObject foodPrefab;
@@ -36,13 +47,10 @@ public class CookingSystem : MonoBehaviour
 
     private void Start()
     {
-        mainManager = GameObject.FindObjectOfType<MainManager>();
+        mainManager = MainManager.Instance;
 
         // ref to droppable script on this object
         droppable = GetComponent<Droppable>();
-
-        //// holding recipes
-        //recipes = new int[7][];
 
         // sort recipes into numerical order (allows comparison)
         foreach (int[] recipe in recipes)
@@ -92,7 +100,7 @@ public class CookingSystem : MonoBehaviour
                                 if(spawnedItemScript != null)
                                 {
                                     // set type and subtype variables in new object
-                                    spawnedItemScript.SetTypes(2, i);
+                                    spawnedItemScript.SetTypes(2, i, mainManager.foodSprites[i-1]);
                                     // call function to update appearance of new object
                                     spawnedItemScript.UpdateVisual();
                                     // move new object to the aviable slot

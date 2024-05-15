@@ -5,24 +5,28 @@ using UnityEngine;
 public class TabControl : MonoBehaviour
 {
     bool tabOpen = true;
+    private Transform panelTransform;
+    private Vector3 startPosition;
 
+    private void Start()
+    {
+        panelTransform = transform.Find("PanelBackground");
+        startPosition = panelTransform.position;
+    }
+
+    // move UI off-screen or on-screen to open/close
     public void ToggleTab()
     {
         if(tabOpen)
         {
             tabOpen = false;
-            transform.Find("OpenPanel").position = new Vector3(transform.Find("OpenPanel").position.x - 500, transform.Find("OpenPanel").position.y, transform.Find("OpenPanel").position.z);
-            transform.Find("PanelBackground").position = new Vector3(transform.Find("PanelBackground").position.x - 500, transform.Find("PanelBackground").position.y, transform.Find("PanelBackground").position.z);
+            panelTransform.position = new Vector3(0f, panelTransform.position.y, panelTransform.position.z);
         }
         else
         { 
             tabOpen = true;
-            transform.Find("OpenPanel").position = new Vector3(transform.Find("OpenPanel").position.x + 500, transform.Find("OpenPanel").position.y, transform.Find("OpenPanel").position.z);
-            transform.Find("PanelBackground").position = new Vector3(transform.Find("PanelBackground").position.x + 500, transform.Find("PanelBackground").position.y, transform.Find("PanelBackground").position.z);
+            transform.Find("PanelBackground").position = startPosition;
 
         }
-
-        //transform.Find("PanelBackground").gameObject.SetActive(tabOpen);
-
     }
 }

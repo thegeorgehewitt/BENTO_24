@@ -1,8 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class Draggable : MonoBehaviour
@@ -15,7 +12,11 @@ public class Draggable : MonoBehaviour
     // indicate what type of ingredient/prepped food this is, rice/steamed rice (1), 
     [SerializeField] private int itemSubtype;
 
+    // save starting position
     [SerializeField] protected Transform spawnPoint;
+
+    // sprite to be assigned to draggable
+    [SerializeField] private Sprite spriteToApply;
 
     protected virtual void Start()
     {
@@ -42,6 +43,7 @@ public class Draggable : MonoBehaviour
                     // if free slot available
                     if (nextFreeSlot != null)
                     {
+                        // make child of slot object017uj
                         transform.SetParent(nextFreeSlot, true);
 
                         // move objects to the slot's position
@@ -81,9 +83,16 @@ public class Draggable : MonoBehaviour
 
     IEnumerator MoveTo(Transform endPosition)
     {
+        // default end position to spawn point if a position hasn't been passed in
         if (endPosition == null)
         {
             endPosition = spawnPoint;
+        }
+
+        // to be used for pop-up UI
+        if ((endPosition.position - transform.position).magnitude < 1f)
+        {
+            // activate UI
         }
 
         // used to monitor progress through lerp
@@ -111,11 +120,12 @@ public class Draggable : MonoBehaviour
         yield return null;
     }
 
-    public void SetTypes(int type, int subtype)
+    public void SetTypes(int type, int subtype, Sprite sprite)
     {
         // set variable to represent the type of object (ingredient/food/bento) and subtype (specific item)
         itemType = type;
         itemSubtype = subtype;
+        spriteToApply = sprite;
     }
 
     // accessible function to intiate movement coroutine
@@ -124,25 +134,14 @@ public class Draggable : MonoBehaviour
         StartCoroutine(MoveTo(endPosition));
     }
 
-    // update visuals to match the item type and subtype
+    // update visuals to match the item type/subtype
     public virtual void UpdateVisual()
     {
-        // based on item type, change colour
-        switch (itemType)
+        if (itemType == 1 || itemType == 2)
         {
-            case 1:
-                GetComponent<SpriteRenderer>().color = new Color(0.4980392f, 0.4196079f, 0.682353f, 1);
-                break;
-            case 2:
-                GetComponent<SpriteRenderer>().color = new Color(0.682353f, 0.5067859f, 0.4196078f, 1);
-                break;
-            case 3:
-                return;
-            default:
-                return;
+            // set sprite for draggable object
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = spriteToApply;
         }
-        // change text to display subtype
-        transform.GetChild(0).GetComponent<TextMesh>().text = itemSubtype.ToString();
     }
 
     // function to retrieve item type
@@ -163,6 +162,7 @@ public class Draggable : MonoBehaviour
         transform.position = spawnPoint.position;
     }
 
+    // update spawn point variable
     public void SetSpawnPoint(Transform spawn)
     {
         spawnPoint = spawn;

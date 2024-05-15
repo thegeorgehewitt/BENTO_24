@@ -6,48 +6,32 @@ using UnityEngine.UI;
 
 public class RequirementsUI : MonoBehaviour
 {
+    [SerializeField] private Sprite[] requirementSprites;
 
-    TextMeshProUGUI[] slots;
+    Image[] slots;
 
-    //RatingSystem ratingSystem;
-
-    // reference to main manager script
-    private MainManager mainManager;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        //ratingSystem = GameObject.FindGameObjectWithTag("RatingSystem").GetComponent<RatingSystem>();
-
-        //mainManager = FindObjectOfType<MainManager>();
-        //if (mainManager)
-        //{
-        //    mainManager.OnFundsChange += UpdatePaymentUI;
-        //}
+        // get all the slots
+        slots = GetComponentsInChildren<Image>();
     }
 
+    // requirements UI updates to show new requirements
     public void UpdateRequirements(List<int> newValues)
     {
-        slots = GetComponentsInChildren<TextMeshProUGUI>();
-
         for (int i = 0; i < slots?.Length; i++)
         {
-            slots[i].transform.parent.gameObject.GetComponent<Image>().enabled = false;
+            // disable all
+            slots[i].enabled = false;
+
+            // update value and activate used slots
             if (i < newValues.Count)
             {
-                slots[i].SetText(newValues[i].ToString());
-                slots[i].transform.parent.gameObject.GetComponent<Image>().enabled = true;
-            }
-            else
-            {
-                slots[i].SetText("");
+                slots[i].sprite = requirementSprites[newValues[i]-1];
+                slots[i].enabled = true;
+
+                Debug.Log("Requirement " + newValues[i]);
             }
         }
     }
-
-    //private void UpdatePaymentUI()
-    //{
-    //    TextMeshProUGUI paymentText = GetComponent<TextMeshProUGUI>();
-    //}
-
 }

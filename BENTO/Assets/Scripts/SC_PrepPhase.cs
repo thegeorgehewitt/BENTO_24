@@ -20,22 +20,41 @@ public class SC_PrepPhase : MonoBehaviour
     // reference to UI text field for funds
     [SerializeField] private TextMeshProUGUI fundsText;
 
+    // reference to day text
+    [SerializeField] private TextMeshProUGUI dayText;
+
     // reference to main manager script
     private MainManager mainManager;
 
-
     private void Start()
     {
+        // set time to standard
         Time.timeScale = 1.0f;
 
-        mainManager = FindObjectOfType<MainManager>();
+        // update day UI
+        if (dayText)
+        {
+            dayText.text = ("Day " + mainManager.GetDay().ToString());
+        }
 
+        // update UI
+        UpdateFundsText();
+    }
+
+    private void OnEnable()
+    {
+        mainManager = MainManager.Instance;
+
+        // subcribe to funds change to keep funds UI up to date
         if (mainManager)
         {
             mainManager.OnFundsChange += UpdateFundsText;
         }
+    }
 
-        UpdateFundsText();
+    private void OnDisable()
+    {
+        mainManager.OnFundsChange -= UpdateFundsText;
     }
 
     void Update()
@@ -43,6 +62,7 @@ public class SC_PrepPhase : MonoBehaviour
         // update elapsed time
         timeElapsed += Time.deltaTime;
 
+        // update timer UI
         if (timerBar)
         {
             timerBar.fillAmount = 1 - (timeElapsed / duration);
@@ -56,16 +76,18 @@ public class SC_PrepPhase : MonoBehaviour
         }
     }
 
+    // main menu button function
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
+    // function to update funds UI
     private void UpdateFundsText()
     {
         if (fundsText)
         {
-            fundsText.text = ("B " + mainManager.GetFunds().ToString());
+            fundsText.text = ("B " + mainManager.GetFunds().ToString("F2"));
         }
     }
 }

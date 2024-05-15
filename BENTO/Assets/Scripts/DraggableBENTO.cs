@@ -1,14 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class DraggableBENTO : Draggable
 {
-    protected override void Start() { }
-
     // override function as not needed and could cause errors
     public override void UpdateVisual() { }
 
@@ -29,7 +25,7 @@ public class DraggableBENTO : Draggable
                 if ( BENTODroppable != null )
                 {
                     // run rating script
-                    Debug.Log("rating: " + ratingSystem.RateBento(BENTODroppable));
+                    ratingSystem.RateBento(BENTODroppable);
                 }
             }
         }
@@ -58,9 +54,6 @@ public class DraggableBENTO : Draggable
                 draggable.transform.GetComponent<Renderer>().enabled = true;
             }
 
-            // save reference to slots on object
-            Transform[] slots = transform.GetComponent<Droppable>().GetSlots();
-
             // reset customer slot
             CheckLocationUp();
             // snap BENTO back to spawn locatiom
@@ -69,7 +62,5 @@ public class DraggableBENTO : Draggable
             // turn on renderer
             GetComponent<Renderer>().enabled = true;
         }
-        
     }
-
 }

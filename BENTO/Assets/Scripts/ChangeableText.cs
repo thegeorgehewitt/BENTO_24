@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ChangeableText : MonoBehaviour
 {
-    [SerializeField] private int displayType = 0;
+    // used to determine the type of information to be displayed here e.g. stat name, stat
+    //[SerializeField] private int displayType = 0;
+    [SerializeField] private DisplayType displayType;
 
-    public int GetDisplayType()
+    public DisplayType GetDisplayType()
     {
         return displayType;
     }
