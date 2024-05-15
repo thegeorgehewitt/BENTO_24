@@ -13,7 +13,7 @@ public class RatingSystem : MonoBehaviour
         new List<int>{ 0 }, 
         new List<int>{ 1 }, //steamed rice
         new List<int>{ 4 }, //salad
-        new List<int>{ 2 }, //tofu
+        new List<int>{ 2, 3 }, //tofu
         new List<int>{ 4, 5 }, //seaweed
         new List<int>{ 4, 5 }, //mushroom soup
         new List<int>{ 1 }, //bread
@@ -92,6 +92,15 @@ public class RatingSystem : MonoBehaviour
                 return 0;
             }
 
+            foreach(int foodHeldItem in foodHeld)
+            {
+                Debug.Log("Food held " + foodHeldItem);
+                for (int i = 0; i < recipeInfo[foodHeldItem].Count; i++)
+                {
+                    Debug.Log("Food info " + recipeInfo[foodHeldItem][i]);
+                }
+            }
+
 
             //for each requirement from custoemr, counts the number of occurances in the foods
             for (int reqIndex = 0; reqIndex < requirements.Count; reqIndex++)
@@ -105,6 +114,7 @@ public class RatingSystem : MonoBehaviour
                     // only on first loop
                     if (reqIndex == 0)
                     {
+                        // if a food item is present in the current slot
                         if (foodItem != 0)
                         {
                             // add price of food to cost/price

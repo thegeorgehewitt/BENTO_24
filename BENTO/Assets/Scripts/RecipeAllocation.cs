@@ -13,12 +13,12 @@ public class RecipeAllocation : MonoBehaviour
         new List<int>{ 0 },
         new List<int>{ 1 }, //steamed rice
         new List<int>{ 4 }, //salad
-        new List<int>{ 2 }, //tofu
-        new List<int>{ 5 }, //seaweed
+        new List<int>{ 2, 3 }, //tofu
+        new List<int>{ 4, 5 }, //seaweed
         new List<int>{ 4, 5 }, //mushroom soup
         new List<int>{ 1 }, //bread
         new List<int>{ 1, 6 }, //lollipop
-        new List<int>{ 1, 5 }, //onigiri
+        new List<int>{ 1, 4, 5 }, //onigiri
         new List<int>{ 1, 4, 6 }, //mixed rice
         new List<int>{ 1, 4, 5, 6 }, //mushroom pasta
         new List<int>{ 2, 4, 5 }, //miso soup

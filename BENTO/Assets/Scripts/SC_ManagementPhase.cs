@@ -51,6 +51,11 @@ public class SC_ManagementPhase : MonoBehaviour
             upgradeSlot.SetActive(false);
         }
 
+        UpdateFundsText();
+    }
+
+    private void OnEnable()
+    {
         mainManager = MainManager.Instance;
 
         // subcribe to funds change to keep funds UI up to date
@@ -58,8 +63,11 @@ public class SC_ManagementPhase : MonoBehaviour
         {
             mainManager.OnFundsChange += UpdateFundsText;
         }
+    }
 
-        UpdateFundsText();
+    private void OnDisable()
+    {
+        mainManager.OnFundsChange -= UpdateFundsText;
     }
 
     // function to set up updgrade UI
@@ -97,6 +105,18 @@ public class SC_ManagementPhase : MonoBehaviour
     // fucntion for button press
     public void OnPurchase(int buttonIndex)
     {
+        if(mainManager==null)
+        {
+            Debug.Log("Main Man null");
+        }
+        if (mainManager?.GetFunds() < upgradeCost[availableUpgrades[buttonIndex]])
+        {
+            string previousText = upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text;
+            upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Not Enough Funds";
+            StartCoroutine(ButtonTextReset(upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>(), previousText));
+            return;
+        }
+
         // update button visuals to show item purchased
         upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Purchased";
         upgradeSlots[buttonIndex].transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.9137256f, 0.7607844f);
@@ -123,7 +143,15 @@ public class SC_ManagementPhase : MonoBehaviour
     {
         if (fundsText)
         {
-            fundsText.text = ("B " + mainManager.GetFunds().ToString());
+            fundsText.text = ("B " + mainManager.GetFunds().ToString("F2"));
         }
+    }
+
+    IEnumerator ButtonTextReset(TextMeshProUGUI buttonText, string text)
+    {
+        Debug.Log("coroutine running");
+        yield return new WaitForSeconds(1f);
+
+        buttonText.text = text;
     }
 }

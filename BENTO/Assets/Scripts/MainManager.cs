@@ -11,17 +11,15 @@ public class MainManager : MonoBehaviour
     public static MainManager Instance;
 
     // hold player funds
-    [SerializeField] private float funds = 1500;
+    [SerializeField] private float funds = 2;
 
     // hold info on payments
     private float lastPayment;
     private float lastTip;
     private float[] paymentInfo;
 
-    // track round costs/income
-    private float roundCost = 0;
-    private float roundTips = 0;
-    private float roundIncome = 0;
+    // track player progression
+    private int day = 1;
 
     // action for change in funds, to update UI etc.
     public event Action OnFundsChange;
@@ -41,6 +39,14 @@ public class MainManager : MonoBehaviour
     [SerializeField] public Sprite[] ingredientSprites;
     [SerializeField] public Sprite[] foodSprites;
 
+    // track rounds stats
+    public Dictionary<DisplayType, float> scores = new Dictionary<DisplayType, float>()
+    {
+        { DisplayType.Revenue, 0f },
+        { DisplayType.Tips, 0f },
+        { DisplayType.Profit, 0f },
+        { DisplayType.RunningCost, 5f }
+    };
 
     // used to track if upgrades have been purchased
     private bool[] isPurhased =
@@ -76,10 +82,6 @@ public class MainManager : MonoBehaviour
     // when scene loaded - take actions based on the typ eof scene loaded
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // reset values of round costs and income
-        roundCost = 0;
-        roundTips = 0;
-        roundIncome = 0;
 
         int draggableType;
         int[] toSpawn;
@@ -108,7 +110,12 @@ public class MainManager : MonoBehaviour
             case "OpenLevel":
                 draggableType = 2;
                 toSpawn = availableFoods.ToArray();
-                availableFoods.Clear();
+
+                // reset values of round costs and income
+                scores[DisplayType.Revenue] = 0f;
+                scores[DisplayType.Tips] = 0f;
+                scores[DisplayType.Cost] = 0f;
+
                 break;
 
             // if Management Phase - get access to scene control script and call function to set up upgrade options
@@ -120,6 +127,12 @@ public class MainManager : MonoBehaviour
                     sceneControl.Initialize(isPurhased);
                 }
                 draggableType = 0;
+
+                // successfully cleared level - increase running cost, clear stored foods and increase day count
+                scores[DisplayType.RunningCost] += 0.5f;
+                availableFoods.Clear();
+                day++;
+
                 toSpawn = Array.Empty<int>();
                 return;
 
@@ -214,10 +227,21 @@ public class MainManager : MonoBehaviour
         lastPayment = amount;
         lastTip = tip;
         funds += amount + tip;
-        OnFundsChange();
-        roundIncome += amount;
-        roundTips += tip;
-        roundCost += cost;
+        funds = Mathf.Round(funds * 100f) / 100f;
+        if (OnFundsChange != null)
+        {
+            OnFundsChange();
+        }
+        //roundIncome += amount;
+        //roundTips += tip;
+        //roundCost += cost;
+
+        scores[DisplayType.Revenue] += amount;
+        scores[DisplayType.Revenue] = Mathf.Round(scores[DisplayType.Revenue] * 100f) / 100f;
+        scores[DisplayType.Tips] += tip;
+        scores[DisplayType.Tips] = Mathf.Round(scores[DisplayType.Tips] * 100f) / 100f;
+        scores[DisplayType.Cost] += cost;
+        scores[DisplayType.Cost] = Mathf.Round(scores[DisplayType.Cost] * 100f) / 100f;
 
         return;
     }
@@ -225,13 +249,14 @@ public class MainManager : MonoBehaviour
     // return round totals
     public float[] GetSummary()
     {
-        return new float[] {roundIncome, roundTips, roundCost};
+        return new float[] { scores[DisplayType.Revenue], scores[DisplayType.Tips], scores[DisplayType.Cost], scores[DisplayType.RunningCost] };
     }
 
     // update funds amount and call update funds action for UI update
     public void ChangeFunds(float amount)
     {
         funds += amount;
+        funds = Mathf.Round(funds * 100f) / 100f;
         OnFundsChange();
     }
     
@@ -257,5 +282,10 @@ public class MainManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public int GetDay()
+    {
+        return day;
     }
 }
