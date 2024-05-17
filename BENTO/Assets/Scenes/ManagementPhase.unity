@@ -161,7 +161,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 160}
+  m_SizeDelta: {x: 1600, y: 160}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &144107023
 MonoBehaviour:
@@ -713,7 +713,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 160}
+  m_SizeDelta: {x: 1600, y: 160}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &613806706
 MonoBehaviour:
@@ -1232,10 +1232,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f305de44c566cf4bba935d0e3b58655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  funds: 2
+  funds: 10
   draggablePrefab: {fileID: 1672514041771622000, guid: fd3a491101945c04a857d0ece520adf2, type: 3}
-  ingredientSprites: []
-  foodSprites: []
+  ingredientSprites:
+  - {fileID: 1225688775, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -1562487108, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 1381721196, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 1373758316, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -879236439, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -830629080, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: -717574686, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: -1607980609, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  foodSprites:
+  - {fileID: 1501277288, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -767689827, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -622290619, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 503955582, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -925095467, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -2082657908, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: 809728785, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: 174340085, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -1470472818, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 1159328497, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: 51578591, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: -1455653193, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 705814823, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 2114014804, guid: dc694fb3f71366e40920facb6b646604, type: 3}
+  - {fileID: 22361257, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: -2083850795, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: 967820952, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: -1357857470, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
+  - {fileID: 397537555, guid: f25eb9558f4ea1741a31f1ae215d1c46, type: 3}
 --- !u!4 &953904890
 Transform:
   m_ObjectHideFlags: 0
@@ -1356,7 +1383,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 160}
+  m_SizeDelta: {x: 1600, y: 160}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1241864511
 MonoBehaviour:
@@ -1508,7 +1535,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 160}
+  m_SizeDelta: {x: 1600, y: 160}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1293171091
 MonoBehaviour:
@@ -1790,11 +1817,11 @@ RectTransform:
   m_Father: {fileID: 2084302677}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1044, y: 784}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1516061759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,8 +1869,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 46
+  m_fontSizeBase: 46
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

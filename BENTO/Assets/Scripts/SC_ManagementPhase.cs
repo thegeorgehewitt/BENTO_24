@@ -19,25 +19,60 @@ public class SC_ManagementPhase : MonoBehaviour
     // array of upgrade names to display
     private string[] upgradeNames =
     {
-         "New Ingredient: 6",
-         "New Ingredient: 7",
-         "New Recipe: 6",
-         "New Recipe: 7",
-         "Upgrade 5",
-         "Upgrade 6",
-         "Upgrade 7"
+         "New Recipe: Mixed Rice",
+         "New Ingredient: Seaweed",
+         "New Recipe: Nori Snack",
+         "New Recipe: Onigiri",
+         "Additional Prepped Food Slot",
+         "New Recipe: Miso Soup",
+         "New Ingredient: Mushrooms",
+         "New Recipe: Mushroom Soup",
+         "New Recipe: Sushi",
+         "New Recipe: Mushroom Rice",
+         "New Ingredient: Flour",
+         "New Recipe: Bread",
+         "Additional Prepped Food Slot",
+         "New Recipe: Mushroom Pasta",
+         "New Recipe: Sandwich",
+         "New Ingredient: Sugar",
+         "New Recieps: Lolli Pop",
+         "Additional Prepped Food Slot",
+         "New Recipe: Cookie",
+         "New Ingredient: Beans",
+         "New Recipe: Banh Chay",
+         "New Recipe: Sum Sum",
+         "New Recipe: Chilli and Rice",
+         "New Recipe: Empanadas"
     };
 
     // array of upgrade costs to display/charge
     private float[] upgradeCost =
     {
-        120,
-        100,
-        100,
-        1,
-        1,
-        1,
-        1
+        2,
+        10,
+        2,
+        3,
+        6,
+        3,
+        10,
+        3,
+        3,
+        3,
+        10,
+        4,
+        8,
+        4,
+        4,
+        12,
+        4,
+        8,
+        4,
+        12,
+        4,
+        4,
+        4,
+        4
+
     };
 
     // array to track which upgrades are available to purchase this round
@@ -50,8 +85,6 @@ public class SC_ManagementPhase : MonoBehaviour
         {
             upgradeSlot.SetActive(false);
         }
-
-        UpdateFundsText();
     }
 
     private void OnEnable()
@@ -100,6 +133,8 @@ public class SC_ManagementPhase : MonoBehaviour
 
             }
         }
+
+        UpdateFundsText();
     }
 
     // fucntion for button press
@@ -141,7 +176,7 @@ public class SC_ManagementPhase : MonoBehaviour
     // function to update UI for funds to a the new amount
     private void UpdateFundsText()
     {
-        if (fundsText)
+        if (fundsText && mainManager != null)
         {
             fundsText.text = ("B " + mainManager.GetFunds().ToString("F2"));
         }
