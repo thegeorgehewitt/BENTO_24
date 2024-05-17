@@ -28,13 +28,16 @@ public class MainManager : MonoBehaviour
     [SerializeField] private GameObject draggablePrefab;
 
     // track which ingredients the player can use
-    List<int> availableIngredients = new List<int>{ 1, 2, 3, 4, 5 };
+    List<int> availableIngredients = new List<int>{ 1, 2, 3 };
 
     // track which foods have been prepped this round
     List<int> availableFoods = new List<int>();
 
     // holding available recipes
-    List<int> currentRecipes = new List<int>() { 1, 2, 3, 4, 5 };
+    List<int> currentRecipes = new List<int>() { 1, 2, 3 };
+
+    // hold num of slots available for prepped food
+    int foodSlots = 3;
 
     [SerializeField] public Sprite[] ingredientSprites;
     [SerializeField] public Sprite[] foodSprites;
@@ -49,19 +52,15 @@ public class MainManager : MonoBehaviour
     };
 
     // used to track if upgrades have been purchased
-    private bool[] isPurhased =
-    {
-        false,
-        false,
-        false,
-        false,
-        false,
-        false,
-        false
-    };
+    private bool[] isPurchased = new bool[24];
 
     private void Awake()
     {
+        for(int i = 0; i < isPurchased.Count(); i++)
+        {
+            isPurchased[i] = false;
+        }
+
         // prevent multiple instances from existing
         if (Instance)
         {
@@ -104,6 +103,14 @@ public class MainManager : MonoBehaviour
                     // prepare visuals
                     recipeAllocation.InitializeRecipes(currentRecipes);
                 }
+
+                // get the specific prepped food droppable
+                Droppable preppedScript = FindObjectOfType<PositionControl>().gameObject.GetComponent<Droppable>();
+                if (preppedScript != null)
+                {
+                    preppedScript.PrepSlots(foodSlots);
+                }
+
                 break;
 
             // if Open Level - set draggable type to prepped food (2) and set prepped food from previous round to be spawned, then clear this for the next time
@@ -124,7 +131,7 @@ public class MainManager : MonoBehaviour
                 SC_ManagementPhase sceneControl = FindObjectOfType<SC_ManagementPhase>();
                 if(sceneControl)
                 {
-                    sceneControl.Initialize(isPurhased);
+                    sceneControl.Initialize(isPurchased);
                 }
                 draggableType = 0;
 
@@ -179,6 +186,150 @@ public class MainManager : MonoBehaviour
     {
         return currentRecipes;
     }
+ 
+    // return current funds
+    public float GetFunds()
+    {
+        return funds;
+    }
+
+    // reutrn the last payment and tip amount
+    public float[] GetPayment()
+    {
+        paymentInfo = new float[] { lastPayment , lastTip };
+        return paymentInfo;
+    }
+
+    // gather info on bento box exhange, update funds and round totals
+    public void ProcessBox(float amount, float tip, float cost)
+    {
+        // only process if round not ended
+        SC_OpenPhase sceneScript = FindObjectOfType<SC_OpenPhase>();
+        if(sceneScript != null && !sceneScript.GetRoundEnd())
+        {
+            // track rounds costs etc. and update funds
+            lastPayment = amount;
+            lastTip = tip;
+            funds += amount + tip;
+            funds = Mathf.Round(funds * 100f) / 100f;
+            if (OnFundsChange != null)
+            {
+                OnFundsChange();
+            }
+
+            scores[DisplayType.Revenue] += amount;
+            scores[DisplayType.Revenue] = Mathf.Round(scores[DisplayType.Revenue] * 100f) / 100f;
+            scores[DisplayType.Tips] += tip;
+            scores[DisplayType.Tips] = Mathf.Round(scores[DisplayType.Tips] * 100f) / 100f;
+            scores[DisplayType.Cost] += cost;
+            scores[DisplayType.Cost] = Mathf.Round(scores[DisplayType.Cost] * 100f) / 100f;
+        }
+
+        return;
+    }
+
+    // return round totals
+    public float[] GetSummary()
+    {
+        return new float[] { scores[DisplayType.Revenue], scores[DisplayType.Tips], scores[DisplayType.Cost], scores[DisplayType.RunningCost] };
+    }
+
+    // update funds amount and call update funds action for UI update
+    public void ChangeFunds(float amount)
+    {
+        funds += amount;
+        funds = Mathf.Round(funds * 100f) / 100f;
+        OnFundsChange();
+    }
+
+    public int GetDay()
+    {
+        return day;
+    }
+
+    // take the upgrade selected and call the corresponding function to implement the upgradeval
+    public void ProcessUpgrade(int upgradeIndex)
+    {
+        isPurchased[upgradeIndex] = true;
+
+        switch (upgradeIndex)
+        {
+            case 0:
+                AddToRecipes(9);
+                break;
+            case 1:
+                AddToIngredients(4);
+                break;
+            case 2:
+                AddToRecipes(4);
+                break;
+            case 3:
+                AddToRecipes(8);
+                break;
+            case 4:
+                foodSlots++;
+                break;
+            case 5:
+                AddToRecipes(11);
+                break;
+            case 6:
+                AddToIngredients(5);
+                break;
+            case 7:
+                AddToRecipes(5);
+                break;
+            case 8:
+                AddToRecipes(17);
+                break;
+            case 9:
+                AddToRecipes(12);
+                break;
+            case 10:
+                AddToIngredients(6);
+                break;
+            case 11:
+                AddToRecipes(6);
+                break;
+            case 12:
+                foodSlots++;
+                break;
+            case 13:
+                AddToRecipes(10);
+                break;
+            case 14:
+                AddToRecipes(18);
+                break;
+            case 15:
+                AddToIngredients(7);
+                break;
+            case 16:
+                AddToRecipes(7);
+                break;
+            case 17:
+                foodSlots++;
+                break;
+            case 18:
+                AddToRecipes(15);
+                break;
+            case 19:
+                AddToIngredients(8);
+                break;
+            case 20:
+                AddToRecipes(16);
+                break;
+            case 21:
+                AddToRecipes(13);
+                break;
+            case 22:
+                AddToRecipes(14);
+                break;
+            case 23:
+                AddToRecipes(19);
+                break;
+            default:
+                break;
+        }
+    }
 
     // used to add to available recipes
     public void AddToRecipes(int newRecipe)
@@ -206,86 +357,5 @@ public class MainManager : MonoBehaviour
         {
             availableIngredients.Add(newIngredient);
         }
-    }
-
-    // return current funds
-    public float GetFunds()
-    {
-        return funds;
-    }
-
-    // reutrn the last payment and tip amount
-    public float[] GetPayment()
-    {
-        paymentInfo = new float[] { lastPayment , lastTip };
-        return paymentInfo;
-    }
-
-    // gather info on bento box exhange, update funds and round totals
-    public void ProcessBox(float amount, float tip, float cost)
-    {
-        lastPayment = amount;
-        lastTip = tip;
-        funds += amount + tip;
-        funds = Mathf.Round(funds * 100f) / 100f;
-        if (OnFundsChange != null)
-        {
-            OnFundsChange();
-        }
-        //roundIncome += amount;
-        //roundTips += tip;
-        //roundCost += cost;
-
-        scores[DisplayType.Revenue] += amount;
-        scores[DisplayType.Revenue] = Mathf.Round(scores[DisplayType.Revenue] * 100f) / 100f;
-        scores[DisplayType.Tips] += tip;
-        scores[DisplayType.Tips] = Mathf.Round(scores[DisplayType.Tips] * 100f) / 100f;
-        scores[DisplayType.Cost] += cost;
-        scores[DisplayType.Cost] = Mathf.Round(scores[DisplayType.Cost] * 100f) / 100f;
-
-        return;
-    }
-
-    // return round totals
-    public float[] GetSummary()
-    {
-        return new float[] { scores[DisplayType.Revenue], scores[DisplayType.Tips], scores[DisplayType.Cost], scores[DisplayType.RunningCost] };
-    }
-
-    // update funds amount and call update funds action for UI update
-    public void ChangeFunds(float amount)
-    {
-        funds += amount;
-        funds = Mathf.Round(funds * 100f) / 100f;
-        OnFundsChange();
-    }
-    
-    // take the upgrade selected and call the corresponding function to implement the upgradeval
-    public void ProcessUpgrade(int upgradeIndex)
-    {
-        isPurhased[upgradeIndex] = true;
-
-        switch (upgradeIndex)
-        {
-            case 0:
-                AddToIngredients(6);
-                break;
-            case 1:
-                AddToIngredients(7);
-                break;
-            case 2:
-                AddToRecipes(6);
-                break;
-            case 3:
-                AddToRecipes(7);
-                break;
-            default:
-                break;
-        }
-    }
-
-    public int GetDay()
-    {
-        return day;
     }
 }

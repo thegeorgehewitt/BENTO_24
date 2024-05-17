@@ -33,6 +33,7 @@ public class SC_OpenPhase : MonoBehaviour
 
     // reference to round end screen
     [SerializeField] private GameObject roundEndScreen;
+    [SerializeField] private GameObject bankruptIcon;
 
     // track which scene should be opened (continue/restart)
     [SerializeField] private string roundToLoad;
@@ -149,11 +150,19 @@ public class SC_OpenPhase : MonoBehaviour
                         {
                             if (roundToLoad == "OpenLevel")
                             {
-                                textDisplay.text = "No Funds - Retry";
+                                textDisplay.text = "Retry";
+                                if (bankruptIcon != null)
+                                {
+                                    bankruptIcon.SetActive(true);
+                                }
                             }
                             else
                             {
                                 textDisplay.text = "Continue";
+                                if (bankruptIcon != null)
+                                {
+                                    bankruptIcon.SetActive(false);
+                                }
                             }
                         }    
                         else
@@ -167,6 +176,10 @@ public class SC_OpenPhase : MonoBehaviour
 
                 // display the end screen
                 roundEndScreen.SetActive(true);
+            }
+            else
+            {
+                LoadNextScene();
             }
         }
     }
@@ -203,6 +216,10 @@ public class SC_OpenPhase : MonoBehaviour
         }
     }
 
+    public bool GetRoundEnd()
+    {
+        return roundEnd;
+    }
 
     // fucniton to open next scene
     public void LoadNextScene()

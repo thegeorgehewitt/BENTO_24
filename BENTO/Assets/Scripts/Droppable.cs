@@ -18,7 +18,7 @@ public class Droppable : MonoBehaviour
             Slot slot = transform.GetChild(i).GetComponent<Slot>();
 
             // if script found
-            if (slot != null)
+            if (slot != null && slot.gameObject.activeSelf)
             {
                 // check if free
                 if(slot.IsFree())
@@ -74,5 +74,23 @@ public class Droppable : MonoBehaviour
         }
 
         return slots;
+    }
+
+    public void PrepSlots(int numOfSlots)
+    {
+        // repeat for each child of the object (slots)
+        for (int i = 0; i < transform.childCount && i < numOfSlots; i++)
+        {
+            // attempt to save ref of the slot script attackted to the child
+            Slot slot = transform.GetChild(i).GetComponent<Slot>();
+
+            // if script found
+            if (slot != null && !slot.gameObject.activeSelf)
+            {
+                slot.gameObject.SetActive(true);
+            }
+        }
+
+        return;
     }
 }
