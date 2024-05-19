@@ -29,8 +29,6 @@ public class RequirementsUI : MonoBehaviour
             {
                 slots[i].sprite = requirementSprites[newValues[i]-1];
                 slots[i].enabled = true;
-
-                Debug.Log("Requirement " + newValues[i]);
             }
         }
     }

@@ -60,7 +60,10 @@ public class SC_OpenPhase : MonoBehaviour
         // update day UI
         if(dayText)
         {
-            dayText.text = ("Day " + mainManager.GetDay().ToString());
+            if (mainManager)
+            {
+                dayText.text = ("Day " + mainManager.GetDay().ToString());
+            }
         }
 
         // update UI
@@ -92,7 +95,10 @@ public class SC_OpenPhase : MonoBehaviour
 
     private void OnDisable()
     {
-        mainManager.OnFundsChange -= UpdateFundsAndPaymentText;
+        if(mainManager)
+        {
+            mainManager.OnFundsChange -= UpdateFundsAndPaymentText;
+        }
     }
 
     void Update()

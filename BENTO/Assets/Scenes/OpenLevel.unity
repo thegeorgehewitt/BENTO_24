@@ -1121,6 +1121,7 @@ GameObject:
   - component: {fileID: 352368967}
   - component: {fileID: 352368971}
   - component: {fileID: 352368972}
+  - component: {fileID: 352368973}
   m_Layer: 0
   m_Name: Customer
   m_TagString: RatingSystem
@@ -1212,6 +1213,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 352368973}
+        m_TargetAssemblyTypeName: RandomImage, Assembly-CSharp
+        m_MethodName: UpdateImage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &352368972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,6 +1239,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GuideUI: {fileID: 1716652432}
   offsetType: 1
+--- !u!114 &352368973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352368965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 949bc841777abc7439edea8288ee0c57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  customerSprites:
+  - {fileID: 1080828605, guid: ce3bc8b274a23bd45b0d6c8a49ec26a7, type: 3}
+  - {fileID: -786328291, guid: e379106199e7c69499b3f3686b80416d, type: 3}
+  - {fileID: 322634570, guid: 0f7f4664a2ca03a448657239f0defd93, type: 3}
+  - {fileID: -32374897, guid: 9a0e4d03cc14a694b9b00d1dda6e34d6, type: 3}
+  - {fileID: 650460109, guid: 505da9aab64e4fd439a306f700be846e, type: 3}
+  - {fileID: 21300000, guid: 0652e07b285c4754183b8806824d26ab, type: 3}
+  - {fileID: -958149177, guid: b9eca190d3e93184da71de2bafb1677f, type: 3}
+  - {fileID: -859826475, guid: f31fe92b0a8055b4b9cd6fdde45410c1, type: 3}
+  imageIndex: 
+  spriteRenderer: {fileID: 0}
 --- !u!1 &389587434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcc1881b4c96add4599267d162a43c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 60
   timerBar: {fileID: 72478694}
   fundsText: {fileID: 1914051439}
   paymentText: {fileID: 2078841340}
@@ -2221,7 +2257,7 @@ Transform:
   m_GameObject: {fileID: 564632508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.54599994, y: 0.67200005, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 352368970}
@@ -2281,11 +2317,11 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -3
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  m_Sprite: {fileID: 1080828605, guid: ce3bc8b274a23bd45b0d6c8a49ec26a7, type: 3}
   m_Color: {r: 0.8820258, g: 0.84788185, b: 0.9622642, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 1
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -2640,7 +2676,7 @@ RectTransform:
   m_GameObject: {fileID: 634888963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1648499591}
@@ -2650,8 +2686,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_SizeDelta: {x: 2732, y: 2048}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &634888965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2691,7 +2727,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &634888967
 Canvas:
   m_ObjectHideFlags: 0
@@ -2701,8 +2737,8 @@ Canvas:
   m_GameObject: {fileID: 634888963}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 2
+  m_Camera: {fileID: 1534414500}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -4972,7 +5008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.9245283, b: 0.9245283, a: 1}
+  m_Color: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

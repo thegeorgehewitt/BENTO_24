@@ -1,0 +1,229 @@
+fileFormatVersion: 2
+guid: ce3bc8b274a23bd45b0d6c8a49ec26a7
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 102, y: 400, z: 402, w: 98}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Portrait Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 400
+        width: 78
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bd74253d67338c4e9e3e1c534050860
+      internalID: 1080828605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 1537655665
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Portrait Sheet_5: -2119864122
+      Portrait Sheet_14: 1372701240
+      Portrait Sheet_32: -296001493
+      Portrait Sheet_31: -1371908381
+      Portrait Sheet_46: -1552575179
+      Portrait Sheet_49: 620542522
+      Portrait Sheet_41: 784534470
+      Portrait Sheet_64: -1066277107
+      Portrait Sheet_61: 387913318
+      Portrait Sheet_58: -1549007384
+      Portrait Sheet_62: -979178488
+      Portrait Sheet_28: 1907152925
+      Portrait Sheet_43: -1644841145
+      Portrait Sheet_71: -1227483794
+      Portrait Sheet_7: 1543834858
+      Portrait Sheet_16: 1581496203
+      Portrait Sheet_72: 2135778804
+      Portrait Sheet_48: 1476039398
+      Portrait Sheet_44: -2141285771
+      Portrait Sheet_65: -2074581617
+      Portrait Sheet_34: 1264245692
+      Portrait Sheet_13: -2063852168
+      Portrait Sheet_25: -1236947601
+      Portrait Sheet_45: -542664621
+      Portrait Sheet_51: -1683025728
+      Portrait Sheet_2: 2027048966
+      Portrait Sheet_9: 2079137304
+      Portrait Sheet_24: -1219558311
+      Portrait Sheet_22: 1498583468
+      Portrait Sheet_10: -846846819
+      Portrait Sheet_26: 1872784008
+      Portrait Sheet_20: 103196255
+      Portrait Sheet_54: -919850021
+      Portrait Sheet_60: 1007084531
+      Portrait Sheet_56: -52000603
+      Portrait Sheet_27: -997234637
+      Portrait Sheet_19: 626946422
+      Portrait Sheet_52: 1028013447
+      Portrait Sheet_0: 111865005
+      Portrait Sheet_11: -713367028
+      Portrait Sheet_17: 442410275
+      Portrait Sheet_12: -900227256
+      Portrait Sheet_36: 87683523
+      Portrait Sheet_18: -1751044941
+      Portrait Sheet_67: 1853771623
+      Portrait Sheet_57: -416198599
+      Portrait Sheet_30: 1529221509
+      Portrait Sheet_40: -155712021
+      Portrait Sheet_47: 125889565
+      Portrait Sheet_69: 1590003619
+      Portrait Sheet_3: 1780771637
+      Portrait Sheet_1: 1080828605
+      Portrait Sheet_6: 904196190
+      Portrait Sheet_63: 1757746789
+      Portrait Sheet_42: 1280667098
+      Portrait Sheet_21: 14933242
+      Portrait Sheet_33: -216585219
+      Portrait Sheet_59: -552703305
+      Portrait Sheet_23: -1956959383
+      Portrait Sheet_53: -1706836981
+      Portrait Sheet_4: -1257579354
+      Portrait Sheet_37: 1821011066
+      Portrait Sheet_8: -521767954
+      Portrait Sheet_39: -1446077533
+      Portrait Sheet_50: -782374830
+      Portrait Sheet_68: 1834967121
+      Portrait Sheet_29: -1584667241
+      Portrait Sheet_70: -932685174
+      Portrait Sheet_15: -336177733
+      Portrait Sheet_35: -338822303
+      Portrait Sheet_38: -1056045203
+      Portrait Sheet_55: -643437822
+      Portrait Sheet_66: -1532163933
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

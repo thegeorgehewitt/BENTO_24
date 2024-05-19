@@ -92,14 +92,14 @@ public class RatingSystem : MonoBehaviour
                 return 0;
             }
 
-            foreach(int foodHeldItem in foodHeld)
-            {
-                Debug.Log("Food held " + foodHeldItem);
-                for (int i = 0; i < recipeInfo[foodHeldItem].Count; i++)
-                {
-                    Debug.Log("Food info " + recipeInfo[foodHeldItem][i]);
-                }
-            }
+            //foreach(int foodHeldItem in foodHeld)
+            //{
+            //    Debug.Log("Food held " + foodHeldItem);
+            //    for (int i = 0; i < recipeInfo[foodHeldItem].Count; i++)
+            //    {
+            //        Debug.Log("Food info " + recipeInfo[foodHeldItem][i]);
+            //    }
+            //}
 
 
             //for each requirement from custoemr, counts the number of occurances in the foods

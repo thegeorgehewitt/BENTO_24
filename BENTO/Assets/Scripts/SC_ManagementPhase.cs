@@ -184,7 +184,6 @@ public class SC_ManagementPhase : MonoBehaviour
 
     IEnumerator ButtonTextReset(TextMeshProUGUI buttonText, string text)
     {
-        Debug.Log("coroutine running");
         yield return new WaitForSeconds(1f);
 
         buttonText.text = text;
