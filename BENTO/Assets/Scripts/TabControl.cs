@@ -20,7 +20,7 @@ public class TabControl : MonoBehaviour
         if(tabOpen)
         {
             tabOpen = false;
-            panelTransform.position = new Vector3(0f, panelTransform.position.y, panelTransform.position.z);
+            panelTransform.position = new Vector3(70 -panelTransform.GetComponent<RectTransform>().rect.width/2, panelTransform.position.y, panelTransform.position.z);
         }
         else
         { 
