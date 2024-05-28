@@ -52,6 +52,11 @@ public class SC_OpenPhase : MonoBehaviour
     // reference to main manager script
     private MainManager mainManager;
 
+    private void Awake()
+    {
+        mainManager = MainManager.Instance;
+    }
+
     void Start()
     {
         // set time to standard
@@ -78,14 +83,12 @@ public class SC_OpenPhase : MonoBehaviour
         // deactivate payment messgae
         if(paymentText)
         {
-            paymentText.transform.parent.gameObject.SetActive(false);
+            paymentText.gameObject.SetActive(false);
         }
     }
 
     private void OnEnable()
     {
-        mainManager = MainManager.Instance;
-
         // subcribe to funds change to keep funds UI up to date
         if (mainManager)
         {
@@ -200,15 +203,15 @@ public class SC_OpenPhase : MonoBehaviour
     private void UpdateFundsAndPaymentText()
     {
         // update funds text
-        if (fundsText && !reloadingScene)
+        if (fundsText && !reloadingScene && mainManager)
         {
             fundsText.text = ("B " + mainManager.GetFunds().ToString());
         }
 
         // show payment info
-        if (paymentText)
+        if (paymentText && mainManager)
         {
-            paymentText.transform.parent.gameObject.SetActive(true);
+            paymentText.gameObject.SetActive(true);
 
             paymentText.text = (mainManager.GetPayment()[0].ToString() + " + " + mainManager.GetPayment()[1].ToString());
 
@@ -244,6 +247,6 @@ public class SC_OpenPhase : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
 
-        paymentText.transform.parent.gameObject.SetActive(false);
+        paymentText.gameObject.SetActive(false);
     }
 }
