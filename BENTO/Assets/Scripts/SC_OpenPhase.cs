@@ -116,7 +116,7 @@ public class SC_OpenPhase : MonoBehaviour
         }
 
         // if duration reached and round still active
-        if (timeElapsed > duration && !roundEnd)
+        if (timeElapsed > duration && !roundEnd && mainManager)
         {
             // update funds amount with costs
             mainManager.ChangeFunds(-mainManager.GetSummary()[2] - mainManager.GetSummary()[3]);

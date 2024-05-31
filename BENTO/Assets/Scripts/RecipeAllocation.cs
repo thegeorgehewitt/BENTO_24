@@ -8,28 +8,28 @@ public class RecipeAllocation : MonoBehaviour
     [SerializeField] private Sprite[] recipeSprites;
     [SerializeField] private Sprite[] infoSprites;
 
-    // list of nutrients/flavours in recipe (1 - carbs, 2 - protein, 3 - fats, 4 - fibre, 5 - salty/umami, 6 - sweet, 7 - sour, 8 - bitter/spicy)
+    // list of nutrients/flavours in recipe (1 - grains, 2 - fruits, 3 - fibre, 4 - sweet, 5 - drink)
     private List<int>[] recipeInfo = {
         new List<int>{ 0 },
-        new List<int>{ 1 }, //steamed rice
-        new List<int>{ 4 }, //salad
-        new List<int>{ 2, 3 }, //tofu
-        new List<int>{ 4, 5 }, //seaweed
-        new List<int>{ 4, 5 }, //mushroom soup
-        new List<int>{ 1 }, //bread
-        new List<int>{ 1, 6 }, //lollipop
-        new List<int>{ 1, 4, 5 }, //onigiri
-        new List<int>{ 1, 4, 6 }, //mixed rice
-        new List<int>{ 1, 4, 5, 6 }, //mushroom pasta
-        new List<int>{ 2, 4, 5 }, //miso soup
-        new List<int>{ 1, 4, 5 }, //mushroom rice
-        new List<int>{ 1, 6 }, //sum sum
-        new List<int>{ 1, 2, 3, 8 }, //chili and rice
-        new List<int>{ 1, 6 }, //cookie
-        new List<int>{ 1, 2, 4 }, //banh chay
-        new List<int>{ 1, 4, 5, 8 }, //sushi
-        new List<int>{ 1, 2, 4 }, //sandwich
-        new List<int>{ 1, 2, 8 } //empanadas
+        new List<int>{ 0 }, //bread
+        new List<int>{ 2, 3 }, //fried banana
+        new List<int>{ 1, 3 }, //porridge
+        new List<int>{ 1, 2 }, //banana bread
+        new List<int>{ 1, 2, 3 }, //banana porridge
+        new List<int>{ 2, 4 }, //blueberry bowl
+        new List<int>{ 1, 2, 3 }, //blueberry porridge
+        new List<int>{ 2, 4 }, //fruit salad
+        new List<int>{ 2, 3, 5 }, //banana milk
+        new List<int>{ 1, 2, 3 }, //fruit porridge
+        new List<int>{ 2, 5 }, //blueberry milk
+        new List<int>{ 1, 4 }, //pancakes
+        new List<int>{ 2, 5 }, //smoothie
+        new List<int>{ 1, 2, 4 }, //banana pancakes
+        new List<int>{ 1, 5 }, //french toast
+        new List<int>{ 1 }, //flatbread
+        new List<int>{ 1, 2, 4 }, //fruit pancakes
+        new List<int>{ 1, 2, 3, 4 }, //banana french toast
+        new List<int>{ 1, 2, 4 } //blueberry french toast
     };
 
     // prepare recipes tabs
@@ -46,7 +46,7 @@ public class RecipeAllocation : MonoBehaviour
             if (i < currentRecipes.Count)
             {
                 // set image if one available and make active
-                if (currentRecipes[i] <  recipeSprites.Length)
+                if (currentRecipes[i] < recipeSprites.Length)
                 {
                     transform.GetChild(i).GetComponentInChildren<Image>().sprite = recipeSprites[currentRecipes[i]-1];
                     recipeButton.SetActive(true);
@@ -67,14 +67,18 @@ public class RecipeAllocation : MonoBehaviour
                     // set image if one available and needed
                     if (j < recipeInfo[currentRecipes[i]].Count)
                     {
-                        if (infoSprites[recipeInfo[currentRecipes[i]][j] - 1])
+                        if (recipeInfo[currentRecipes[i]][j] != 0)
                         {
-                            infoSlot.GetComponent<Image>().sprite = infoSprites[recipeInfo[currentRecipes[i]][j] - 1];
+                            if (infoSprites[recipeInfo[currentRecipes[i]][j] - 1])
+                            {
+                                infoSlot.GetComponent<Image>().sprite = infoSprites[recipeInfo[currentRecipes[i]][j] - 1];
+                            }
+                            else
+                            {
+                                infoSlot.GetComponent<Image>().sprite = null;
+                            }
                         }
-                        else
-                        {
-                            infoSlot.GetComponent<Image>().sprite = null;
-                        }
+                        
                     }
                     else
                     {

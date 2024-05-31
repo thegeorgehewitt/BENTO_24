@@ -85,7 +85,7 @@ public class Droppable : MonoBehaviour
             Slot slot = transform.GetChild(i).GetComponent<Slot>();
 
             // if script found
-            if (slot != null && !slot.gameObject.activeSelf)
+            if (slot != null)
             {
                 slot.gameObject.SetActive(true);
             }

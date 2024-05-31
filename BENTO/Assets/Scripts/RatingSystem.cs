@@ -8,29 +8,28 @@ using UnityEngine.Events;
 
 public class RatingSystem : MonoBehaviour
 {
-    // list of nutrients/flavours in recipe (1 - sugar, 2 - fruity, 3 - wholegrain, 4 - creamy, 5 - buttery)
+    // list of nutrients/flavours in recipe (1 - grains, 2 - fruits, 3 - fibre, 4 - sweet, 5 - drink)
     private List<int>[] recipeInfo = {
-        new List<int>{ 0 }, 
+        new List<int>{ 0 },
         new List<int>{ 0 }, //bread
-        new List<int>{ 2 }, //fried banana
-        new List<int>{ 3 }, //porridge
-        new List<int>{ 2 }, //banana bread
-        new List<int>{ 2, 3 }, //banana porridge
-        new List<int>{ 2, 3 }, //blueberry bowl
-        new List<int>{ 2, 3 }, //blueberry porridge
-        new List<int>{ 2 }, //fruit salad
-        new List<int>{ 2, 4 }, //banana milk
-        new List<int>{ 2, 3 }, //fruit porridge
-        new List<int>{ 2, 4 }, //blueberry milk
-        new List<int>{ 1 }, //pancakes
-        new List<int>{ 2, 4 }, //smoothie
-        new List<int>{ 1, 2 }, //banana pancakes
-        new List<int>{ 5 }, //french toast
-        new List<int>{ 4, 5 }, //flatbread
-        new List<int>{ 1, 2 }, //fruit pancakes
-        new List<int>{ 2, 5 }, //banana french toast
-        new List<int>{ 2, 5 } //blueberry french toast
-
+        new List<int>{ 2, 3 }, //fried banana
+        new List<int>{ 1, 3 }, //porridge
+        new List<int>{ 1, 2 }, //banana bread
+        new List<int>{ 1, 2, 3 }, //banana porridge
+        new List<int>{ 2, 4 }, //blueberry bowl
+        new List<int>{ 1, 2, 3 }, //blueberry porridge
+        new List<int>{ 2, 4 }, //fruit salad
+        new List<int>{ 2, 3, 5 }, //banana milk
+        new List<int>{ 1, 2, 3 }, //fruit porridge
+        new List<int>{ 2, 5 }, //blueberry milk
+        new List<int>{ 1, 4 }, //pancakes
+        new List<int>{ 2, 5 }, //smoothie
+        new List<int>{ 1, 2, 4 }, //banana pancakes
+        new List<int>{ 1, 5 }, //french toast
+        new List<int>{ 1 }, //flatbread
+        new List<int>{ 1, 2, 4 }, //fruit pancakes
+        new List<int>{ 1, 2, 3, 4 }, //banana french toast
+        new List<int>{ 1, 2, 4 } //blueberry french toast
     };
 
     // 2D array with food cost and price
@@ -72,7 +71,6 @@ public class RatingSystem : MonoBehaviour
     void Start()
     {
         GenerateRequirements();
-        updateUI?.Invoke(requirements);
         mainManager = MainManager.Instance;
     }
 
@@ -160,5 +158,7 @@ public class RatingSystem : MonoBehaviour
 
         // display new requirements
         updateUI?.Invoke(requirements);
+
     }
 }
+

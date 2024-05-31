@@ -24,7 +24,7 @@ public class PositionControl : MonoBehaviour
         }
         else if (offsetType == UIOffsetType.None)
         {
-            transform.position = new Vector3(Camera.main.ScreenToWorldPoint(GuideUI.transform.position).x, Camera.main.ScreenToWorldPoint(GuideUI.transform.position).y, 0);
+            transform.position = new Vector3((GuideUI.transform.position).x, (GuideUI.transform.position).y, 0);
         }
     }
 }

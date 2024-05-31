@@ -27,7 +27,7 @@ public class CookingSystem : MonoBehaviour
         new int[] { 1, 2, 6 }, //banana pancakes
         new int[] { 1, 6, 7 }, //french toast
         new int[] { 1, 5, 7 }, //flatbread
-        new int[] { 1, 2, 4 }, //fruit pancake
+        new int[] { 1, 2, 4 }, //blueberry pancake
         new int[] { 1, 2, 7 }, //banana french toast
         new int[] { 1, 4, 7 } //blueberry french toast
     };
