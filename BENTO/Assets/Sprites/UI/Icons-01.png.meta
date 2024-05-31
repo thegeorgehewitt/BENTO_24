@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ce3bc8b274a23bd45b0d6c8a49ec26a7
+guid: 1a1b2c4afd4d82b40ada613cde2750d5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 102, y: 400, z: 402, w: 98}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -114,17 +114,29 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Portrait Sheet_1
+      name: Icons-01_0
       rect:
         serializedVersion: 2
-        x: 111
-        y: 400
-        width: 78
-        height: 96
+        x: 0
+        y: 3078
+        width: 430
+        height: 430
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,8 +144,92 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bd74253d67338c4e9e3e1c534050860
-      internalID: 1080828605
+      spriteID: 42571f76e2aae3b4b858d317c9696ccc
+      internalID: -132643079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons-01_1
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 3078
+        width: 430
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ed6902dbe9776f47ad9aa2b17bc83fa
+      internalID: 768050512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons-01_2
+      rect:
+        serializedVersion: 2
+        x: 860
+        y: 3078
+        width: 430
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0efcda53e40c24e96c351f4dcb364e
+      internalID: -743802775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons-01_3
+      rect:
+        serializedVersion: 2
+        x: 1290
+        y: 3078
+        width: 430
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6650a340463bc44897a03054496856d
+      internalID: -842903810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icons-01_4
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 3078
+        width: 430
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf9c2041450d08a4caecb225f148cf65
+      internalID: 1377442040
       vertices: []
       indices: 
       edges: []
@@ -142,86 +238,18 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Portrait Sheet_5: -2119864122
-      Portrait Sheet_14: 1372701240
-      Portrait Sheet_32: -296001493
-      Portrait Sheet_31: -1371908381
-      Portrait Sheet_46: -1552575179
-      Portrait Sheet_49: 620542522
-      Portrait Sheet_41: 784534470
-      Portrait Sheet_64: -1066277107
-      Portrait Sheet_61: 387913318
-      Portrait Sheet_58: -1549007384
-      Portrait Sheet_62: -979178488
-      Portrait Sheet_28: 1907152925
-      Portrait Sheet_43: -1644841145
-      Portrait Sheet_71: -1227483794
-      Portrait Sheet_7: 1543834858
-      Portrait Sheet_16: 1581496203
-      Portrait Sheet_72: 2135778804
-      Portrait Sheet_48: 1476039398
-      Portrait Sheet_44: -2141285771
-      Portrait Sheet_65: -2074581617
-      Portrait Sheet_34: 1264245692
-      Portrait Sheet_13: -2063852168
-      Portrait Sheet_25: -1236947601
-      Portrait Sheet_45: -542664621
-      Portrait Sheet_51: -1683025728
-      Portrait Sheet_2: 2027048966
-      Portrait Sheet_9: 2079137304
-      Portrait Sheet_24: -1219558311
-      Portrait Sheet_22: 1498583468
-      Portrait Sheet_10: -846846819
-      Portrait Sheet_26: 1872784008
-      Portrait Sheet_20: 103196255
-      Portrait Sheet_54: -919850021
-      Portrait Sheet_60: 1007084531
-      Portrait Sheet_56: -52000603
-      Portrait Sheet_27: -997234637
-      Portrait Sheet_19: 626946422
-      Portrait Sheet_52: 1028013447
-      Portrait Sheet_0: 111865005
-      Portrait Sheet_11: -713367028
-      Portrait Sheet_17: 442410275
-      Portrait Sheet_12: -900227256
-      Portrait Sheet_36: 87683523
-      Portrait Sheet_18: -1751044941
-      Portrait Sheet_67: 1853771623
-      Portrait Sheet_57: -416198599
-      Portrait Sheet_30: 1529221509
-      Portrait Sheet_40: -155712021
-      Portrait Sheet_47: 125889565
-      Portrait Sheet_69: 1590003619
-      Portrait Sheet_3: 1780771637
-      Portrait Sheet_1: 1080828605
-      Portrait Sheet_6: 904196190
-      Portrait Sheet_63: 1757746789
-      Portrait Sheet_42: 1280667098
-      Portrait Sheet_21: 14933242
-      Portrait Sheet_33: -216585219
-      Portrait Sheet_59: -552703305
-      Portrait Sheet_23: -1956959383
-      Portrait Sheet_53: -1706836981
-      Portrait Sheet_4: -1257579354
-      Portrait Sheet_37: 1821011066
-      Portrait Sheet_8: -521767954
-      Portrait Sheet_39: -1446077533
-      Portrait Sheet_50: -782374830
-      Portrait Sheet_68: 1834967121
-      Portrait Sheet_29: -1584667241
-      Portrait Sheet_70: -932685174
-      Portrait Sheet_15: -336177733
-      Portrait Sheet_35: -338822303
-      Portrait Sheet_38: -1056045203
-      Portrait Sheet_55: -643437822
-      Portrait Sheet_66: -1532163933
+      Icons-01_3: -842903810
+      Icons-01_0: -132643079
+      Icons-01_1: 768050512
+      Icons-01_4: 1377442040
+      Icons-01_2: -743802775
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

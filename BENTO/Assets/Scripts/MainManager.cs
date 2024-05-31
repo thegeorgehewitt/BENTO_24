@@ -52,7 +52,7 @@ public class MainManager : MonoBehaviour
     };
 
     // used to track if upgrades have been purchased
-    private bool[] isPurchased = new bool[24];
+    private bool[] isPurchased = new bool[23];
 
     private void Awake()
     {
@@ -255,55 +255,55 @@ public class MainManager : MonoBehaviour
         switch (upgradeIndex)
         {
             case 0:
-                AddToRecipes(9);
-                break;
-            case 1:
-                AddToIngredients(4);
-                break;
-            case 2:
                 AddToRecipes(4);
                 break;
+            case 1:
+                AddToRecipes(5);
+                break;
+            case 2:
+                AddToIngredients(4);
+                break;
             case 3:
-                AddToRecipes(8);
+                AddToRecipes(6);
                 break;
             case 4:
                 foodSlots++;
                 break;
             case 5:
-                AddToRecipes(11);
+                AddToRecipes(7);
                 break;
             case 6:
-                AddToIngredients(5);
+                AddToRecipes(8);
                 break;
             case 7:
-                AddToRecipes(5);
+                AddToIngredients(5);
                 break;
             case 8:
-                AddToRecipes(17);
+                AddToRecipes(9);
                 break;
             case 9:
-                AddToRecipes(12);
+                AddToRecipes(10);
                 break;
             case 10:
-                AddToIngredients(6);
+                AddToRecipes(11);
                 break;
             case 11:
-                AddToRecipes(6);
+                AddToIngredients(6);
                 break;
             case 12:
                 foodSlots++;
                 break;
             case 13:
-                AddToRecipes(10);
+                AddToRecipes(12);
                 break;
             case 14:
-                AddToRecipes(18);
+                AddToRecipes(13);
                 break;
             case 15:
-                AddToIngredients(7);
+                AddToRecipes(14);
                 break;
             case 16:
-                AddToRecipes(7);
+                AddToIngredients(7);
                 break;
             case 17:
                 foodSlots++;
@@ -312,18 +312,15 @@ public class MainManager : MonoBehaviour
                 AddToRecipes(15);
                 break;
             case 19:
-                AddToIngredients(8);
-                break;
-            case 20:
                 AddToRecipes(16);
                 break;
+            case 20:
+                AddToRecipes(17);
+                break;
             case 21:
-                AddToRecipes(13);
+                AddToRecipes(18);
                 break;
             case 22:
-                AddToRecipes(14);
-                break;
-            case 23:
                 AddToRecipes(19);
                 break;
             default:

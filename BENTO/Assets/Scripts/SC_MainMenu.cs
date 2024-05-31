@@ -9,9 +9,4 @@ public class SC_MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("PrepLevel");
     }
-
-    public void QuitButton()
-    {
-        Application.Quit();
-    }
 }

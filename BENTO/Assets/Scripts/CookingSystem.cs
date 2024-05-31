@@ -11,32 +11,32 @@ public class CookingSystem : MonoBehaviour
     private int[][] recipes =
     {
         new int[] { 0, 0, 0 },
-        new int[] { 1, 0, 0 }, //steamed rice
-        new int[] { 2, 0, 0 }, //salad
-        new int[] { 3, 0, 0 }, //tofu
-        new int[] { 4, 0, 0 }, //seaweed
-        new int[] { 5, 0, 0 }, //mushroom soup
-        new int[] { 6, 0, 0 }, //bread
-        new int[] { 7, 0, 0 }, //lollipop
-        new int[] { 1, 4, 0 }, //onigiri
-        new int[] { 1, 2, 0 }, //mixed rice
-        new int[] { 5, 6, 0 }, //mushroom pasta
-        new int[] { 4, 3, 0 }, //miso soup
-        new int[] { 1, 5, 0 }, //mushroom rice
-        new int[] { 1, 7, 0 }, //sum sum
-        new int[] { 1, 3, 8 }, //chili and rice
-        new int[] { 5, 7, 0 }, //cookie
-        new int[] { 1, 8, 0 }, //banh chay
-        new int[] { 1, 2, 4 }, //sushi
-        new int[] { 2, 3, 6 }, //sandwich
-        new int[] { 3, 6, 8 } //empanadas
+        new int[] { 1, 0, 0 }, //bread
+        new int[] { 2, 0, 0 }, //fried banana
+        new int[] { 3, 0, 0 }, //porridge
+        new int[] { 1, 2, 0 }, //banana bread
+        new int[] { 2, 3, 0 }, //banana porridge
+        new int[] { 4, 0, 0 }, //blueberry bowl
+        new int[] { 4, 3, 0 }, //blueberry porridge
+        new int[] { 2, 4, 0 }, //fruit salad
+        new int[] { 2, 5, 0 }, //banana milk
+        new int[] { 2, 4, 3 }, //fruit porridge
+        new int[] { 4, 5, 0 }, //blueberry milk
+        new int[] { 1, 6, 0 }, //pancakes
+        new int[] { 2, 4, 5 }, //smoothie
+        new int[] { 1, 2, 6 }, //banana pancakes
+        new int[] { 1, 6, 7 }, //french toast
+        new int[] { 1, 5, 7 }, //flatbread
+        new int[] { 1, 2, 4 }, //blueberry pancake
+        new int[] { 1, 2, 7 }, //banana french toast
+        new int[] { 1, 4, 7 } //blueberry french toast
     };
 
     private Droppable droppable;
 
     // arrays to hold ingredient and recipe names
-    private string[] ingredientNames = new string[] { "None", "Rice", "Veg", "Tofu", "Seaweed", "Mushrooms", "Flour", "Sugar", "Beans"  };
-    private string[] recipeNames = new string[] { "None", "Steamed Rice", "Salad", "Crispy Tofu", "Seaweed Snack", "Mushroom Soup", "Bread", "Lollipop", "Onigiri", "Mixed Rice", "Mushroom Pasta", "Miso Soup", "Mushroom Rice", "Sum Sum", "Chili and Rice", "Cookie", "Banh Chay", "Sushi", "Sandwich", "Empanadas" };
+    private string[] ingredientNames = new string[] { "None", "flour", "banana", "oats", "blueberry", "milk", "sugar", "butter"  };
+    private string[] recipeNames = new string[] { "None", "bread", "fried banana", "porridge", "banana bread", "banana porridge", "blueberry bowl", "blueberry porridge", "fruit salad", "banana milk", "fruit porridge", "blueberry milk", "pancakes", "smoothie", "banana pancakes", "french toast", "flatbread", "fruit pancakes", "banana french toast", "blueberry french toast" };
 
     // reference to prepped food prefab, for instantiation
     [SerializeField] private GameObject foodPrefab;

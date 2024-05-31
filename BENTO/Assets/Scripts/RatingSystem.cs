@@ -8,56 +8,55 @@ using UnityEngine.Events;
 
 public class RatingSystem : MonoBehaviour
 {
-    // list of nutrients/flavours in recipe (1 - carbs, 2 - protein, 3 - fats, 4 - fibre, 5 - salty/umami, 6 - sweet, 7 - sour, 8 - bitter/spicy)
+    // list of nutrients/flavours in recipe (1 - grains, 2 - fruits, 3 - fibre, 4 - sweet, 5 - drink)
     private List<int>[] recipeInfo = {
-        new List<int>{ 0 }, 
-        new List<int>{ 1 }, //steamed rice
-        new List<int>{ 4 }, //salad
-        new List<int>{ 2, 3 }, //tofu
-        new List<int>{ 4, 5 }, //seaweed
-        new List<int>{ 4, 5 }, //mushroom soup
-        new List<int>{ 1 }, //bread
-        new List<int>{ 1, 6 }, //lollipop
-        new List<int>{ 1, 4, 5 }, //onigiri
-        new List<int>{ 1, 4, 6 }, //mixed rice
-        new List<int>{ 1, 4, 5, 6 }, //mushroom pasta
-        new List<int>{ 2, 4, 5 }, //miso soup
-        new List<int>{ 1, 4, 5 }, //mushroom rice
-        new List<int>{ 1, 6 }, //sum sum
-        new List<int>{ 1, 2, 3, 8 }, //chili and rice
-        new List<int>{ 1, 6 }, //cookie
-        new List<int>{ 1, 2, 4 }, //banh chay
-        new List<int>{ 1, 4, 5, 8 }, //sushi
-        new List<int>{ 1, 2, 4 }, //sandwich
-        new List<int>{ 1, 2, 8 } //empanadas
-
+        new List<int>{ 0 },
+        new List<int>{ 0 }, //bread
+        new List<int>{ 2, 3 }, //fried banana
+        new List<int>{ 1, 3 }, //porridge
+        new List<int>{ 1, 2 }, //banana bread
+        new List<int>{ 1, 2, 3 }, //banana porridge
+        new List<int>{ 2, 4 }, //blueberry bowl
+        new List<int>{ 1, 2, 3 }, //blueberry porridge
+        new List<int>{ 2, 4 }, //fruit salad
+        new List<int>{ 2, 3, 5 }, //banana milk
+        new List<int>{ 1, 2, 3 }, //fruit porridge
+        new List<int>{ 2, 5 }, //blueberry milk
+        new List<int>{ 1, 4 }, //pancakes
+        new List<int>{ 2, 5 }, //smoothie
+        new List<int>{ 1, 2, 4 }, //banana pancakes
+        new List<int>{ 1, 5 }, //french toast
+        new List<int>{ 1 }, //flatbread
+        new List<int>{ 1, 2, 4 }, //fruit pancakes
+        new List<int>{ 1, 2, 3, 4 }, //banana french toast
+        new List<int>{ 1, 2, 4 } //blueberry french toast
     };
 
     // 2D array with food cost and price
     private float[][] foodCostPrice =
     {       
-        new float[] { 0.6f, 1 }, //steamed rice
-        new float[] { 0.6f, 1 }, //salad
-        new float[] { 0.6f, 1 }, //tofu
-        new float[] { 0.6f, 1 }, //seaweed
-        new float[] { 0.6f, 1 }, //mushroom soup
         new float[] { 0.6f, 1 }, //bread
-        new float[] { 0.6f, 1 }, //lollipop
-        new float[] { 1.4f, 2 },  //onigiri
-        new float[] { 1.4f, 2 }, //mixed rice
-        new float[] { 1.4f, 2 }, //mushroom pasta
-        new float[] { 1.4f, 2 }, //miso soup
-        new float[] { 1.4f, 2 }, //mushroom rice
-        new float[] { 1.4f, 2 }, //sum sum
-        new float[] { 1.4f, 2 }, //chili and rice
-        new float[] { 1.4f, 2 }, //cookie
-        new float[] { 1.4f, 2 }, //banh chay
-        new float[] { 1.4f, 2 }, //sushi
-        new float[] { 1.4f, 2 }, //sandwich
-        new float[] { 1.4f, 2 } //empanadas
+        new float[] { 0.6f, 1 }, //fried banana
+        new float[] { 0.6f, 1 }, //porridge
+        new float[] { 1.0f, 1.5f }, //banana bread
+        new float[] { 1.0f, 1.5f }, //banana porridge
+        new float[] { 0.6f, 1 }, //blueberry bowl
+        new float[] { 1.0f, 1.5f }, //blueberry porridge
+        new float[] { 1.0f, 1.5f }, //fruit salad
+        new float[] { 1.0f, 1.5f }, //banana milk
+        new float[] { 1.4f, 2 }, //fruit porridge
+        new float[] { 1.0f, 1.5f }, //blueberry milk
+        new float[] { 1.0f, 1.5f }, //pancakes
+        new float[] { 1.4f, 2 }, //smoothie
+        new float[] { 1.4f, 2 }, //banana pancakes
+        new float[] { 1.0f, 1.5f }, //french toast
+        new float[] { 1.4f, 2 }, //flatbread
+        new float[] { 1.4f, 2 }, //fruit pancakes
+        new float[] { 1.4f, 2 }, //banana french toast
+        new float[] { 1.4f, 2 } //blueberry french toast
     };
 
-    [SerializeField] private List<int> requirements = new List<int>(); // 1-7 relating to food info
+    [SerializeField] private List<int> requirements = new List<int>(); // 1-5 relating to food info
 
     private MainManager mainManager;
 
@@ -72,7 +71,6 @@ public class RatingSystem : MonoBehaviour
     void Start()
     {
         GenerateRequirements();
-        updateUI?.Invoke(requirements);
         mainManager = MainManager.Instance;
     }
 
@@ -91,16 +89,6 @@ public class RatingSystem : MonoBehaviour
             {
                 return 0;
             }
-
-            //foreach(int foodHeldItem in foodHeld)
-            //{
-            //    Debug.Log("Food held " + foodHeldItem);
-            //    for (int i = 0; i < recipeInfo[foodHeldItem].Count; i++)
-            //    {
-            //        Debug.Log("Food info " + recipeInfo[foodHeldItem][i]);
-            //    }
-            //}
-
 
             //for each requirement from custoemr, counts the number of occurances in the foods
             for (int reqIndex = 0; reqIndex < requirements.Count; reqIndex++)
@@ -160,7 +148,7 @@ public class RatingSystem : MonoBehaviour
             int newValue = 0;
             while (!requirements.Contains(newValue))
             {
-                newValue = Random.Range(1, 8);
+                newValue = Random.Range(1, 6);
                 if (!requirements.Contains(newValue))
                 {
                     requirements.Add(newValue);
@@ -170,5 +158,7 @@ public class RatingSystem : MonoBehaviour
 
         // display new requirements
         updateUI?.Invoke(requirements);
+
     }
 }
+

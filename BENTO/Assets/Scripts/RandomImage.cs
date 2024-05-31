@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RandomImage : MonoBehaviour
 {
     [SerializeField] private Sprite[] customerSprites;
     [SerializeField] private List<int> imageIndex = new List<int>();
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Image spriteImage;
 
     private void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteImage = GetComponent<Image>();
 
         for (int i = 0; i < customerSprites.Length; i++)
         {
@@ -21,15 +22,17 @@ public class RandomImage : MonoBehaviour
 
     public void UpdateImage(List<int> newValues)
     {
-        Debug.Log("Fucntion called");
-        if (spriteRenderer != null)
+        spriteImage.enabled = false;
+
+        StartCoroutine(WaitAndUpdate());
+    }
+
+    IEnumerator WaitAndUpdate()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (spriteImage != null)
         {
-            Debug.Log("sprite renderer found");
-            Debug.Log(imageIndex.Count);
-            Debug.Log(customerSprites.Length);
-
-
-
             if (imageIndex.Count == 0)
             {
                 for (int i = 0; i < customerSprites.Length; i++)
@@ -37,10 +40,12 @@ public class RandomImage : MonoBehaviour
                     imageIndex.Add(i);
                 }
             }
-            
+
             int randomInt = Random.Range(0, imageIndex.Count - 1);
-            spriteRenderer.sprite = customerSprites[randomInt];
-            imageIndex.Remove(randomInt);
+            spriteImage.sprite = customerSprites[imageIndex[randomInt]];
+            imageIndex.Remove(imageIndex[randomInt]);
+
+            spriteImage.enabled = true;
         }
     }
 }
