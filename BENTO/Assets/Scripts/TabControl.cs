@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class TabControl : MonoBehaviour
 {
-    bool tabOpen = true;
-    private Transform panelTransform;
-    private Vector3 startPosition;
-
-    private void Start()
-    {
-        panelTransform = transform.Find("PanelBackground");
-        startPosition = panelTransform.position;
-    }
+    bool tabOpen = false;
+    [SerializeField] private RectTransform panelRect;
+    private bool isMoving = false;
 
     // move UI off-screen or on-screen to open/close
     public void ToggleTab()
     {
+        if (isMoving)
+        {
+            return;
+        }
+
+        isMoving = true;
         if(tabOpen)
         {
             tabOpen = false;
-            panelTransform.position = new Vector3(70 -panelTransform.GetComponent<RectTransform>().rect.width/2, panelTransform.position.y, panelTransform.position.z);
+            panelRect.localPosition = new Vector3( panelRect.localPosition.x - panelRect.rect.width/2f, panelRect.localPosition.y, panelRect.localPosition.z);
         }
         else
         { 
             tabOpen = true;
-            transform.Find("PanelBackground").position = startPosition;
-
+            panelRect.localPosition = new Vector3(panelRect.localPosition.x + panelRect.rect.width / 2f, panelRect.localPosition.y, panelRect.localPosition.z);
         }
+        isMoving = false;
     }
 }

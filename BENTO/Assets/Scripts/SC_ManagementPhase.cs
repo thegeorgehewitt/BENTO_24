@@ -140,7 +140,7 @@ public class SC_ManagementPhase : MonoBehaviour
     {
         if(mainManager==null)
         {
-            Debug.Log("Main Man null");
+            Debug.Log("Main Menu null");
         }
         if (mainManager?.GetFunds() < upgradeCost[availableUpgrades[buttonIndex]])
         {

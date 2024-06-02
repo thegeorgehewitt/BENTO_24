@@ -205,7 +205,7 @@ public class SC_OpenPhase : MonoBehaviour
         // update funds text
         if (fundsText && !reloadingScene && mainManager)
         {
-            fundsText.text = ("B " + mainManager.GetFunds().ToString());
+            fundsText.text = ("B " + mainManager.GetFunds().ToString("F2"));
         }
 
         // show payment info
@@ -213,7 +213,7 @@ public class SC_OpenPhase : MonoBehaviour
         {
             paymentText.gameObject.SetActive(true);
 
-            paymentText.text = (mainManager.GetPayment()[0].ToString() + " + " + mainManager.GetPayment()[1].ToString());
+            paymentText.text = (mainManager.GetPayment()[0].ToString("F2") + " + " + mainManager.GetPayment()[1].ToString("F2"));
 
             // if already displaying - cancel
             if (displayCoroutine != null)

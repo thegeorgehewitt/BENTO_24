@@ -104,11 +104,15 @@ public class MainManager : MonoBehaviour
                     recipeAllocation.InitializeRecipes(currentRecipes);
                 }
 
-                // get the specific prepped food droppable
-                Droppable preppedScript = FindObjectOfType<PositionControl>().gameObject.GetComponent<Droppable>();
-                if (preppedScript != null)
+                PositionControl[] positionControlScripts = FindObjectsOfType<PositionControl>();
+                foreach (PositionControl positionControl in positionControlScripts)
                 {
-                    preppedScript.PrepSlots(foodSlots);
+                    // get the specific prepped food droppable
+                    Droppable preppedScript = positionControl.gameObject.GetComponent<Droppable>();
+                    if (preppedScript != null)
+                    {
+                        preppedScript.PrepSlots(foodSlots);
+                    }
                 }
 
                 break;
