@@ -140,6 +140,8 @@ public class SC_OpenPhase : MonoBehaviour
             // display round end screen with summary info
             if (roundEndScreen)
             {
+                SoundManager.instance.PlaySFX("Payment");
+
                 TextMeshProUGUI[] textDisplays = roundEndScreen.GetComponentsInChildren<TextMeshProUGUI>();
                 foreach (var textDisplay in textDisplays)
                 {
@@ -148,12 +150,12 @@ public class SC_OpenPhase : MonoBehaviour
                     {
                         if (script.GetDisplayType() == DisplayType.Profit)
                         {
-                            float profit = mainManager.GetSummary()[0] + mainManager.GetSummary()[1] - mainManager.GetSummary()[2] - mainManager.GetSummary()[3];
-                            textDisplay.text = profit.ToString();
+                            float profit = Mathf.Round((mainManager.GetSummary()[0] + mainManager.GetSummary()[1] - mainManager.GetSummary()[2] - mainManager.GetSummary()[3]) * 100) / 100;
+                            textDisplay.text = profit.ToString("F2");
                         }
                         else if (script.GetDisplayType() == DisplayType.RunningCost)
                         {
-                            textDisplay.text = mainManager.GetSummary()[3].ToString();
+                            textDisplay.text = mainManager.GetSummary()[3].ToString("F2");
                         }
                         else if (script.GetDisplayType() == DisplayType.ButtonText)
                         {
@@ -176,7 +178,7 @@ public class SC_OpenPhase : MonoBehaviour
                         }    
                         else
                         {
-                            textDisplay.text = mainManager.GetSummary()[(int)script.GetDisplayType()].ToString();
+                            textDisplay.text = mainManager.GetSummary()[(int)script.GetDisplayType()].ToString("F2");
                         }
                     }
                 }
@@ -196,6 +198,8 @@ public class SC_OpenPhase : MonoBehaviour
     // functionality for 'return to menu' button
     public void ReturnToMenu()
     {
+        SoundManager.instance?.PlaySFX("MenuInteract");
+
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -230,9 +234,11 @@ public class SC_OpenPhase : MonoBehaviour
         return roundEnd;
     }
 
-    // fucniton to open next scene
+    // funciton to open next scene
     public void LoadNextScene()
     {
+        SoundManager.instance?.PlaySFX("MenuInteract");
+
         if (roundToLoad == "OpenLevel")
         {
             reloadingScene = true;

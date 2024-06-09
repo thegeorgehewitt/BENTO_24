@@ -144,6 +144,8 @@ public class SC_ManagementPhase : MonoBehaviour
         }
         if (mainManager?.GetFunds() < upgradeCost[availableUpgrades[buttonIndex]])
         {
+            SoundManager.instance?.PlaySFX("MenuInteract");
+
             string previousText = upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text;
             upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Not Enough Funds";
             StartCoroutine(ButtonTextReset(upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>(), previousText));
@@ -161,12 +163,16 @@ public class SC_ManagementPhase : MonoBehaviour
             mainManager.ChangeFunds(-upgradeCost[availableUpgrades[buttonIndex]]);
             mainManager.ProcessUpgrade(availableUpgrades[buttonIndex]);
             UpdateFundsText();
+
+            SoundManager.instance?.PlaySFX("Payment");
         }
     }
 
     // function for continue button - continue to next phase
     public void LoadNextScene()
     {
+        SoundManager.instance?.PlaySFX("MenuInteract");
+
         SceneManager.LoadScene("PrepLevel");
         return;
     }

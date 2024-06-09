@@ -10,6 +10,8 @@ public class PauseButton : MonoBehaviour
     // button function - open/close menu and pause/play time
     public void Pressed()
     {
+        SoundManager.instance?.PlaySFX("MenuInteract");
+
         if (Time.timeScale > 0.0f)
         {
             Time.timeScale = 0.0f;

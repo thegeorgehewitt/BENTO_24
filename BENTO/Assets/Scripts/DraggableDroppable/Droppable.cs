@@ -23,6 +23,8 @@ public class Droppable : MonoBehaviour
                 // check if free
                 if(slot.IsFree())
                 {
+                    SoundManager.instance?.PlaySFX("Place");
+
                     // set to false, indicating it is in use
                     slot.SetItem(itemSubtype);
 

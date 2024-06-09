@@ -76,6 +76,8 @@ public class RatingSystem : MonoBehaviour
 
     public int RateBento(Droppable BENTODroppable)
     {
+        SoundManager.instance?.PlaySFX("Payment");
+
         // reset rating
         rating = 0;
 

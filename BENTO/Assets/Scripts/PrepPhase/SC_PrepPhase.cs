@@ -79,6 +79,8 @@ public class SC_PrepPhase : MonoBehaviour
     // main menu button function
     public void ReturnToMenu()
     {
+        SoundManager.instance?.PlaySFX("MenuInteract");
+
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -86,6 +86,8 @@ public class CookingSystem : MonoBehaviour
                             // if slot found
                             if (freeSlot != null)
                             {
+                                SoundManager.instance?.PlaySFX("Prep");
+
                                 if(mainManager)
                                 {
                                     mainManager.AddToFoods(i);

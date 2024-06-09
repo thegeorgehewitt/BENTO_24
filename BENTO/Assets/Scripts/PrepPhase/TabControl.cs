@@ -11,6 +11,8 @@ public class TabControl : MonoBehaviour
     // move UI off-screen or on-screen to open/close
     public void ToggleTab()
     {
+        SoundManager.instance?.PlaySFX("RecipeBook");
+
         if (isMoving)
         {
             return;
