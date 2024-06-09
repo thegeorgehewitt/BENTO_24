@@ -12,69 +12,91 @@ public class AudioSettings : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider SFXSlider;
     
+    // set volume based on save setting or UI setting
     private void Start()
     {
-        SetMasterVolume();
-        SetMusicVolume();
-        SetSFXVolume();
+        if(PlayerPrefs.HasKey("MasterVol"))
+        {
+            LoadMasterVolume();
+        }
+        else
+        {
+            SetMasterVolume();
+        }
 
-        //SceneManager.sceneLoaded += SceneLoaded;
+        if (PlayerPrefs.HasKey("MusicVol"))
+        {
+            LoadMusicVolume();
+        }
+        else
+        {
+            SetMusicVolume();
+        }
+
+        if (PlayerPrefs.HasKey("SFXVol"))
+        {
+            LoadSFXVolume();
+        }
+        else
+        {
+            SetSFXVolume();
+        }
     }
 
-    //private void SceneLoaded(Scene scene, LoadSceneMode mode)
-    //{
-    //    if (SceneManager.GetActiveScene().name == "MainMenu")
-    //    {
-    //        Debug.Log("running");
-
-    //        float value;
-
-    //        audioMixer.GetFloat("MasterVol", out value);
-    //        Debug.Log(value);
-    //        value = Mathf.Pow(10, value / 20);
-    //        Debug.Log(value);
-    //        masterSlider.value = value;
-    //        Debug.Log(masterSlider.value);
-
-    //        audioMixer.GetFloat("MusicVol", out value);
-    //        value = Mathf.Pow(10, value / 20);
-
-    //        musicSlider.value = value;
-
-    //        audioMixer.GetFloat("SFXVol", out value);
-    //        value = Mathf.Pow(10, value / 20);
-    //        SFXSlider.value = value;
-    //    }
-    //}
-
+    // update volume based in UI slider value - save
     public void SetMasterVolume()
     {
         if (masterSlider && audioMixer)
         {
             float volume = masterSlider.value;
             audioMixer.SetFloat("MasterVol", Mathf.Log10(volume) * 20);
+            PlayerPrefs.SetFloat("MasterVol", volume);
         }
+    }
+    // update slider to match saved value - then update volume
+    private void LoadMasterVolume()
+    {
+        masterSlider.value = PlayerPrefs.GetFloat("MasterVol");
 
+        SetMasterVolume();
     }
 
+
+    // update volume based in UI slider value - save
     public void SetMusicVolume()
     {
-        if (masterSlider && audioMixer)
+        if (musicSlider && audioMixer)
         {
             float volume = musicSlider.value;
             audioMixer.SetFloat("MusicVol", Mathf.Log10(volume) * 20);
+            PlayerPrefs.SetFloat("MusicVol", volume);
         }
-        
+
+    }
+    // update slider to match saved value - then update volume
+    private void LoadMusicVolume()
+    {
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVol");
+
+        SetMusicVolume();
     }
 
+
+    // update volume based in UI slider value - save
     public void SetSFXVolume()
     {
-        if (masterSlider && audioMixer)
+        if (SFXSlider && audioMixer)
         {
             float volume = SFXSlider.value;
             audioMixer.SetFloat("SFXVol", Mathf.Log10(volume) * 20);
+            PlayerPrefs.SetFloat("SFXVol", volume);
         }
     }
+    // update slider to match saved value - then update volume
+    private void LoadSFXVolume()
+    {
+        SFXSlider.value = PlayerPrefs.GetFloat("SFXVol");
 
-
+        SetSFXVolume();
+    }
 }

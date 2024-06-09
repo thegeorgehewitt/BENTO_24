@@ -13,6 +13,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource SFXSource;
 
+    // ensure only one manager exists
     private void Awake()
     {
         if (instance == null)
@@ -26,20 +27,23 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // start music when game loads
     private void Start()
     {
         PlayMusic();
     }
 
+    // start music
     public void PlayMusic()
     {
-        if (musicSound != null)
+        if (musicSound != null && musicSource != null)
         {
             musicSource.clip = musicSound.clip;
             musicSource.Play();
         }
     }
 
+    // play sound based on name passed in
     public void PlaySFX(string name)
     {
         Sound soundToPlay = Array.Find(SFXSounds, element => element.soundName == name);
@@ -47,7 +51,7 @@ public class SoundManager : MonoBehaviour
         {
             Debug.Log("No sound found");
         }
-        else
+        else if (SFXSource != null)
         {
             SFXSource.clip = soundToPlay.clip;
             SFXSource.Play();
