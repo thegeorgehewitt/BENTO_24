@@ -108,10 +108,10 @@ public class MainManager : MonoBehaviour
                 foreach (PositionControl positionControl in positionControlScripts)
                 {
                     // get the specific prepped food droppable
-                    Droppable preppedScript = positionControl.gameObject.GetComponent<Droppable>();
-                    if (preppedScript != null)
+                    Droppable droppableScript = positionControl.gameObject.GetComponent<Droppable>();
+                    if (droppableScript != null && droppableScript.CompareType(2))
                     {
-                        preppedScript.PrepSlots(foodSlots);
+                        droppableScript.PrepSlots(foodSlots);
                     }
                 }
 

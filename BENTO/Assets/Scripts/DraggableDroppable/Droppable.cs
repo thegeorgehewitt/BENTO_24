@@ -18,7 +18,7 @@ public class Droppable : MonoBehaviour
             Slot slot = transform.GetChild(i).GetComponent<Slot>();
 
             // if script found
-            if (slot != null && slot.gameObject.activeSelf)
+            if (slot != null && (!slot.GetComponent<SpriteRenderer>() || !slot.GetComponent<SpriteRenderer>().enabled))
             {
                 // check if free
                 if(slot.IsFree())
@@ -89,7 +89,11 @@ public class Droppable : MonoBehaviour
             // if script found
             if (slot != null)
             {
-                slot.gameObject.SetActive(true);
+                SpriteRenderer spriteRenderer = slot.gameObject.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.enabled = false;
+                }
             }
         }
 
