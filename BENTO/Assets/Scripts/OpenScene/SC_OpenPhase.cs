@@ -20,7 +20,7 @@ public class SC_OpenPhase : MonoBehaviour
 {
     // reference to time since scene opened
     private float timeElapsed;
-    // reference to max scene duration
+    // reference to max scene baseDuration
     [SerializeField] private float duration;
 
     //field to hold image in timer
@@ -115,7 +115,7 @@ public class SC_OpenPhase : MonoBehaviour
             timerBar.fillAmount = 1 - (timeElapsed / duration);
         }
 
-        // if duration reached and round still active
+        // if baseDuration reached and round still active
         if (timeElapsed > duration && !roundEnd && mainManager)
         {
             // update funds amount with costs
@@ -133,8 +133,7 @@ public class SC_OpenPhase : MonoBehaviour
 
             if (fundsText)
             {
-                fundsText.transform.parent.localScale *= 1.5f;
-                fundsText.fontSize += 10;
+                fundsText.transform.parent.GetChild(1).gameObject.SetActive(false);
             }
 
             // display round end screen with summary info

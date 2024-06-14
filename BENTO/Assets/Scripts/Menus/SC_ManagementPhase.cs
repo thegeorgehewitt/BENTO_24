@@ -154,7 +154,7 @@ public class SC_ManagementPhase : MonoBehaviour
 
         // update button visuals to show item purchased
         upgradeSlots[buttonIndex].transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Purchased";
-        upgradeSlots[buttonIndex].transform.GetChild(0).GetComponent<Image>().color = new Color(0.9450981f, 0.9137256f, 0.7607844f);
+        upgradeSlots[buttonIndex].transform.GetChild(0).GetComponent<Image>().color = new Color(0.8235295f, 0.6941177f, 0.6431373f);
 
         // use main manager to change funds for upgrade charge and implement upgrade effect
         // then update funds UI

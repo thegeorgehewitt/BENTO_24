@@ -89,6 +89,7 @@ public class Droppable : MonoBehaviour
             // if script found
             if (slot != null)
             {
+                // hide object
                 SpriteRenderer spriteRenderer = slot.gameObject.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {

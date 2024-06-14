@@ -11,8 +11,9 @@ public class SC_PrepPhase : MonoBehaviour
     // reference to time since scene opened
     private float timeElapsed;
 
-    // reference to max scene duration
-    [SerializeField] private float duration;
+    // reference to max scene baseDuration
+    [SerializeField] private float baseDuration = 7;
+    private float duration;
 
     //field to hold image in timer
     [SerializeField] private Image timerBar;
@@ -68,7 +69,7 @@ public class SC_PrepPhase : MonoBehaviour
             timerBar.fillAmount = 1 - (timeElapsed / duration);
         }
 
-        // if duration reached
+        // if baseDuration reached
         if (timeElapsed > duration)
         {
             // load next scene
@@ -91,5 +92,10 @@ public class SC_PrepPhase : MonoBehaviour
         {
             fundsText.text = ("B " + mainManager.GetFunds().ToString("F2"));
         }
+    }
+
+    public void SetDuration(float slotCount)
+    {
+        duration = baseDuration + (2 * slotCount);
     }
 }

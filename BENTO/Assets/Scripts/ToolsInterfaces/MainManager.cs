@@ -115,6 +115,8 @@ public class MainManager : MonoBehaviour
                     }
                 }
 
+                FindObjectOfType<SC_PrepPhase>().SetDuration(foodSlots);
+
                 break;
 
             // if Open Level - set draggable type to prepped food (2) and set prepped food from previous round to be spawned, then clear this for the next time
@@ -140,7 +142,7 @@ public class MainManager : MonoBehaviour
                 draggableType = 0;
 
                 // successfully cleared level - increase running cost, clear stored foods and increase day count
-                scores[DisplayType.RunningCost] += 0.5f;
+                scores[DisplayType.RunningCost] += 0.25f;
                 availableFoods.Clear();
                 day++;
 

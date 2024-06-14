@@ -37,30 +37,27 @@ public class DraggableBENTO : Draggable
         // if has parent - is placed on customer
         if ( transform.parent != null )
         {
-            // turn off renderer
-            GetComponent<Renderer>().enabled = false;
-
             // get draggable scripts on the food items held
             Draggable[] draggables = GetComponentsInChildren<Draggable>();
             foreach (Draggable draggable in draggables)
             {
-                //turn off renderer
-                draggable.transform.GetComponent<Renderer>().enabled = false;
-                //reset BENTO slot
-                draggable.CheckLocationUp();
-                // snap food to spawn position
-                draggable.ResetPosition();
-                // turn on renderer
-                draggable.transform.GetComponent<Renderer>().enabled = true;
+                if (draggable.transform.GetComponent<Renderer>() != null)
+                {
+                    //turn off renderer
+                    draggable.transform.GetComponent<Renderer>().enabled = false;
+                    //reset BENTO slot
+                    draggable.CheckLocationUp();
+                    // snap food to spawn position
+                    draggable.ResetPosition();
+                    // turn on renderer
+                    draggable.transform.GetComponent<Renderer>().enabled = true;
+                }
             }
 
             // reset customer slot
             CheckLocationUp();
             // snap BENTO back to spawn locatiom
             transform.position = spawnPoint.position;
-
-            // turn on renderer
-            GetComponent<Renderer>().enabled = true;
         }
     }
 }
