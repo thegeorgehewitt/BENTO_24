@@ -73,7 +73,15 @@ public class SC_PrepPhase : MonoBehaviour
         if (timeElapsed > duration)
         {
             // load next scene
-            SceneManager.LoadScene("OpenLevel");
+            if (mainManager.GetDay() != 1)
+            {
+                SceneManager.LoadScene("OpenLevel");
+            }
+            else
+            {
+                SceneManager.LoadScene("TutorialOpen");
+            }
+            
         }
     }
 

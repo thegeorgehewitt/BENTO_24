@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 117
+  controlID: 62
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -520,22 +520,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\thege\Documents\BENTO_24\BENTO
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 71}
-    m_SelectedIDs: 04650000
-    m_LastClickedID: 25860
-    m_ExpandedIDs: 000000002c6400002e6400003064000032640000066500000a65000000ca9a3b
+    m_SelectedIDs: 3a640000
+    m_LastClickedID: 25658
+    m_ExpandedIDs: 000000003a6400003c6400003e6400004064000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -563,7 +563,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002c6400002e6400003064000032640000
+    m_ExpandedIDs: 000000003a6400003c6400003e64000040640000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000f01d0100bcad0000b6970000b6620000f8640000006500001865000020650000286500006066000052660000b4d00000ba65000008ba0000fea801004232ffff1ed00000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -691,9 +691,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 20650000
       m_LastClickedID: 0
-      m_ExpandedIDs: d628feff9037feffd03cfeff043efeff0441feff9246feff1447feff2649feff444cfeff2253feffa853feffbc54feff3059feffb259feffdc5afeffea5ffeffd260feffd863feff5a64feff6067feff2e6bfeff7c6cfeff826ffeff0470feff0a73feffa873feff2678feff9279feffb67efeffdc80feff8cacfeffb4b6feffd4b9feff48bafeffa8bffeff0ac6feff74cbfeff4cd4feff9cd9fefff0e7fefff2eafeff7aebfeff96edfeff8af6feffb2fefeff5efffeffec02ffffae21ffff4838ffff0a39ffff144bffff7873ffff487bffff388effff5090ffff5490ffff6694ffff3a9bffff36b2ffffa4b2ffff7cb7ffff66d2ffffcee6ffff4ee7ffffbee7ffff3ce8ffffb6f0ffff24fbffff7c610000a6610000fa850000f0860000329300003a930000d4930000e0960000ca970000049800005e9800002ab0000032b00000ccb0000082b30000c2b30000e0b300000ab400003ab4000082b40000bab40000a0bb00009ebc00006ec100003ec2000060c200009ac2000042c5000012c600006ec60000e4c600003cce00006ace00008ece0000a8ce0000b2ce0000e6ce0000face00008ee40000bee40000d2ef000016f400006af4000064f50000b8160100262801002e2801005c28010084280100b6280100f02801003429010054290100962901006c2c0100302d0100722d0100f4bf0100b2c001000ec401000cc50100ccc7010092d3010050d40100c6d50100c4d6010076df010034e0010096e10100aae10100a8e2010068e5010026e6010060e601006ee9010082e9010080ea010040ed0100feed010046ee010040f3010048f3010016f401003ef4010004f90100c2f901000afa010004ff0100daff010002000200ce060200d617020024190200b21a0200c41a0200
+      m_ExpandedIDs: 24fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 

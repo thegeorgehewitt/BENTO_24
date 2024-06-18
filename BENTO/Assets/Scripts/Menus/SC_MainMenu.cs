@@ -7,11 +7,27 @@ public class SC_MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject optionsMenu;
 
+    // reference to main manager script
+    private MainManager mainManager;
+
+    private void OnEnable()
+    {
+        mainManager = MainManager.Instance;
+    }
+
     // function for play button
     public void PlayButton()
     {
         SoundManager.instance?.PlaySFX("MenuInteract");
-        SceneManager.LoadScene("PrepLevel");
+
+        if(mainManager == null)
+        {
+            SceneManager.LoadScene("TutorialPrep");
+        }
+        else
+        {
+            SceneManager.LoadScene("PrepLevel");
+        }
     }
 
     // function for options button
