@@ -851,6 +851,7 @@ PlayerSettings:
   vrEditorSettings: {}
   cloudServicesEnabled:
     Collab: 0
+    Unity Ads: 1
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -864,10 +865,10 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: 161be839-45f2-4f2b-94b2-ce34767625f1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: BENTO
+  projectName: BENTO (1)
   organizationId: georgeoriginal
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

@@ -98,7 +98,10 @@ public class SC_ManagementPhase : MonoBehaviour
 
     private void OnDisable()
     {
-        mainManager.OnFundsChange -= UpdateFundsText;
+        if(mainManager != null)
+        {
+            mainManager.OnFundsChange -= UpdateFundsText;
+        }
     }
 
     // function to set up updgrade UI
