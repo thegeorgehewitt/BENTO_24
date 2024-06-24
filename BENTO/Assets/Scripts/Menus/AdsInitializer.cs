@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UIElements;
 
+// script from unity's documentation - set up advertisments
 public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
     [SerializeField] string _androidGameId;
@@ -31,10 +32,6 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
         {
             Advertisement.Initialize(_gameId, _testMode, this);
         }
-        //else if (Advertisement.isInitialized && Advertisement.isSupported && _adUnit)
-        //{
-        //    _adUnit.LoadAd();
-        //}
     }
 
 

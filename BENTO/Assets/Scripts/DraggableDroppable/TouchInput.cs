@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TouchInput : MonoBehaviour
 {
-    // create instance for the script
+    // create Instance for the script
     public static TouchInput instance;
 
     // used to store the world position that alines with the players current touching position

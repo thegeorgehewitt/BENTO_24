@@ -9,7 +9,7 @@ public class Draggable : MonoBehaviour
 
     // indicate if this is an ingredient (1), prepped food (2) or bento box(3)
     [SerializeField] private int itemType;
-    // indicate what type of ingredient/prepped food this is, rice/steamed rice (1), 
+    // indicate what type of ingredient/prepped food this is 
     [SerializeField] private int itemSubtype;
 
     // save starting position
@@ -18,13 +18,36 @@ public class Draggable : MonoBehaviour
     // sprite to be assigned to draggable
     [SerializeField] private Sprite spriteToApply;
 
+    [SerializeField] private string errorMessage;
+
+    // set appropriate visual and placement error message on spawn
     protected virtual void Start()
     {
         UpdateVisual();
+
+        switch(itemType)
+        {
+            case 1:
+                errorMessage = "Place onto the chopping board";
+                break;
+            case 2:
+                errorMessage = "Place onto the counter";
+                break;
+            case 3:
+                errorMessage = "Place onto the customer";
+                break;
+            default:
+                errorMessage = string.Empty;
+                break;
+        }
     }
 
+
+    // check if item can be places
     public virtual void CheckLocation()
     {
+        bool wrongType = false;
+
         // cast for objects at item's location
         RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, Vector2.zero);
 
@@ -53,9 +76,19 @@ public class Draggable : MonoBehaviour
                         return;
                     }
                 }
+                else
+                {
+                    wrongType = true;
+                }
             }
         }
 
+        // advice player of proper placement
+        if (wrongType)
+        {
+            Vector3 location = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.x);
+            ErrorMessage.Instance.ShowText(errorMessage, Camera.main.WorldToScreenPoint(location));
+        }
 
         // move object back to it's start position
         StartMoveTo(null);

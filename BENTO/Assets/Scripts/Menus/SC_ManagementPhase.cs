@@ -16,6 +16,8 @@ public class SC_ManagementPhase : MonoBehaviour
     // reference to UI text field for funds
     [SerializeField] private TextMeshProUGUI fundsText;
 
+    [SerializeField] private TextMeshProUGUI AllPurchasedText;
+
     // array of upgrade names to display
     private string[] upgradeNames =
     {
@@ -41,36 +43,35 @@ public class SC_ManagementPhase : MonoBehaviour
          "New Recipe: Flatbread",
          "New Recipe: Blueberry Pancake",
          "New Recipe: Banana French Toast",
-         "New Recipe: Blueberry Frencg Toast"
+         "New Recipe: Blueberry French Toast"
     };
 
     // array of upgrade costs to display/charge
     private float[] upgradeCost =
     {
-        2,
-        2,
+        5,
+        5,
+        15,
+        5,
         10,
-        2,
-        6,
-        3,
-        3,
+        7,
+        7,
+        15,
+        7,
+        7,
         10,
-        3,
-        3,
-        4,
+        15,
+        10,
+        9,
+        9,
+        9,
+        15,
         12,
-        8,
-        4,
-        4,
-        4,
         12,
-        8,
-        6,
-        6,
-        6,
-        6,
-        6
-
+        12,
+        12,
+        12,
+        12
     };
 
     // array to track which upgrades are available to purchase this round
@@ -115,6 +116,15 @@ public class SC_ManagementPhase : MonoBehaviour
             placed[purchaseIndex] = purchased[purchaseIndex];
         }
 
+        // if all upgrades purchased, display message
+        if (upgradeSlots.Length == 0)
+        {
+            if (AllPurchasedText != null)
+            {
+                AllPurchasedText.enabled = true;
+            }
+        }
+
         availableUpgrades = new int[upgradeSlots.Length];
 
         // populate and activate default UI
@@ -145,6 +155,8 @@ public class SC_ManagementPhase : MonoBehaviour
         {
             Debug.Log("Main Menu null");
         }
+
+        // if player cannot afford upgrade, display 'not enough funds' message
         if (mainManager?.GetFunds() < upgradeCost[availableUpgrades[buttonIndex]])
         {
             SoundManager.instance?.PlaySFX("MenuInteract");
@@ -189,6 +201,7 @@ public class SC_ManagementPhase : MonoBehaviour
         }
     }
 
+    // remove 'not enough funds' message
     IEnumerator ButtonTextReset(TextMeshProUGUI buttonText, string text)
     {
         yield return new WaitForSeconds(1f);

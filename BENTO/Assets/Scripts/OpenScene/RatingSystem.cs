@@ -92,7 +92,7 @@ public class RatingSystem : MonoBehaviour
                 return 0;
             }
 
-            //for each requirement from custoemr, counts the number of occurances in the foods
+            //for each requirement from customer, counts the number of occurances in the foods
             for (int reqIndex = 0; reqIndex < requirements.Count; reqIndex++)
             {            
                 // repeat for each slot
@@ -108,8 +108,8 @@ public class RatingSystem : MonoBehaviour
                         if (foodItem != 0)
                         {
                             // add price of food to cost/price
-                            boxPrice += foodCostPrice[foodItem][1];
-                            boxCost += foodCostPrice[foodItem][0];
+                            boxPrice += foodCostPrice[foodItem - 1][1];
+                            boxCost += foodCostPrice[foodItem - 1][0];
                         }
                     }
                     

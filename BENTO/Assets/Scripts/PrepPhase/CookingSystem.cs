@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
 
 public class CookingSystem : MonoBehaviour
 {
@@ -25,9 +26,9 @@ public class CookingSystem : MonoBehaviour
         new int[] { 1, 6, 0 }, //pancakes
         new int[] { 2, 4, 5 }, //smoothie
         new int[] { 1, 2, 6 }, //banana pancakes
-        new int[] { 1, 6, 7 }, //french toast
+        new int[] { 1, 7, 0 }, //french toast
         new int[] { 1, 5, 7 }, //flatbread
-        new int[] { 1, 2, 4 }, //blueberry pancake
+        new int[] { 1, 4, 6 }, //blueberry pancake
         new int[] { 1, 2, 7 }, //banana french toast
         new int[] { 1, 4, 7 } //blueberry french toast
     };
@@ -121,9 +122,35 @@ public class CookingSystem : MonoBehaviour
                                     draggable.CheckLocationUp();
                                     draggable.StartMoveTo(null);
                                 }
+
+                                return;
+                            }
+                            else
+                            {
+                                Vector3 location = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.x);
+                                ErrorMessage.Instance.ShowText("No more space", Camera.main.WorldToScreenPoint(location));
+                                return;
                             }
                         }
+                        else
+                        {
+                            Vector3 location = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.x);
+                            ErrorMessage.Instance.ShowText("You already made this", Camera.main.WorldToScreenPoint(location));
+                            return;
+                        }
                     }
+                    else
+                    {
+                        Vector3 location = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.x);
+                        ErrorMessage.Instance.ShowText("You don't have this recipe", Camera.main.WorldToScreenPoint(location));
+                        return;
+                    }
+                }
+                else if (i == recipes.Length - 1)
+                {
+                    Vector3 location = new Vector3(transform.position.x, transform.position.y + 1.2f, transform.position.x);
+                    ErrorMessage.Instance.ShowText("Not a valid recipe", Camera.main.WorldToScreenPoint(location));
+                    return;
                 }
             }
         }

@@ -46,7 +46,7 @@ public class RecipeAllocation : MonoBehaviour
             if (i < currentRecipes.Count)
             {
                 // set image if one available and make active
-                if (currentRecipes[i] < recipeSprites.Length)
+                if (currentRecipes[i] < recipeSprites.Length + 1)
                 {
                     transform.GetChild(i).GetComponentInChildren<Image>().sprite = recipeSprites[currentRecipes[i]-1];
                     recipeButton.SetActive(true);

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
+// script adapted from unity's documentation - display advertisement and give reward
 public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] Button _showAdButton;
@@ -29,12 +30,13 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             Destroy(gameObject);
             return;
         }
-
         instance = this;
         DontDestroyOnLoad(gameObject);
 
+        // subscribe to scene loaded event
         SceneManager.sceneLoaded += OnSceneLoaded;
 
+        // find and store ref to button
         foreach (Button button in FindObjectsOfType<Button>())
         {
             if (button.CompareTag("RewardSystem"))
@@ -44,6 +46,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             }
         }       
 
+        // hide button and set inactive at start
         if (_showAdButton != null)
         {
             // Disable the button until the ad is ready to show:
@@ -62,6 +65,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         _adUnitId = _androidAdUnitId;
 #endif
 
+        // find and store ref to button
         foreach (Button button in FindObjectsOfType<Button>())
         {
             if (button.CompareTag("RewardSystem"))
@@ -71,6 +75,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             }
         }
 
+        // hide button and set inactive at start
         if (_showAdButton != null)
         {
             // Disable the button until the ad is ready to show:
@@ -78,6 +83,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
             _showAdButton.gameObject.SetActive(false);
         }
 
+        // track that player hasn't watched yet
         rewarded = false;
 
         LoadAd();
@@ -127,6 +133,7 @@ public class RewardedAdsButton : MonoBehaviour, IUnityAdsLoadListener, IUnityAds
         {
             //Debug.Log("Unity Ads Rewarded Ad Completed");
 
+            // reawrd player with funds and record that reward has been given
             if(MainManager.Instance != null && rewarded == false)
             {
                 rewarded = true;

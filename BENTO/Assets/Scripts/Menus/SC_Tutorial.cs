@@ -12,6 +12,7 @@ public class SC_Tutorial : MonoBehaviour
     [SerializeField] private bool canProgress = true;
     [SerializeField] private string SceneToLoad;
 
+    // ensure proper timescale and record number of tutorial pictures
     private void Start()
     {
         Time.timeScale = 1.0f;
@@ -30,6 +31,7 @@ public class SC_Tutorial : MonoBehaviour
         TouchInput.OnTouch -= Progress;
     }
 
+    // progress through tutorial images adn then continue
     private void Progress()
     {
         if (canProgress)
@@ -50,9 +52,10 @@ public class SC_Tutorial : MonoBehaviour
         
     }
 
+    // prevent player from skipping tutorial too quickly
     IEnumerator WaitMinTime()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         canProgress = true;
     }
 }

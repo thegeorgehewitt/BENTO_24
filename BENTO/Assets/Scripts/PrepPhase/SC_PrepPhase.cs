@@ -13,6 +13,7 @@ public class SC_PrepPhase : MonoBehaviour
 
     // reference to max scene baseDuration
     [SerializeField] private float baseDuration = 7;
+    [SerializeField] private float timeMultiplier = 3;
     private float duration;
 
     //field to hold image in timer
@@ -102,8 +103,9 @@ public class SC_PrepPhase : MonoBehaviour
         }
     }
 
+    // update prep phase timer based on number of food slots available
     public void SetDuration(float slotCount)
     {
-        duration = baseDuration + (2 * slotCount);
+        duration = baseDuration + (timeMultiplier * slotCount);
     }
 }
